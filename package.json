@@ -49,7 +49,6 @@
     "eslint-plugin-react": "latest",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "husky": "^8.0.3",
     "prettier": "^3.0.2",
     "process": "^0.11.10",
     "react-app-alias": "^2.2.2",
