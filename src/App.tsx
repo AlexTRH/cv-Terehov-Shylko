@@ -1,10 +1,10 @@
 import { useState } from 'react'
+import LoginPage from './pages/auth/LoginPage/LoginPage'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return <h1></h1>
+  return < LoginPage />
 }
 
 export default App
