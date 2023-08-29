@@ -1,19 +1,20 @@
-import React, { lazy } from 'react';
-import { Routes, Route, Navigate, BrowserRouter, Outlet } from 'react-router-dom';
+import React, { lazy, Suspense } from 'react';
+import { Route, BrowserRouter, Routes } from 'react-router-dom';
 
 const LogInPage = lazy(() => import('../pages/auth/LoginPage/LoginPage'));
 const SignupPage = lazy(() => import('../pages/auth/SignupPage/SignupPage'));
 
 const AppRouter = () => {
+  return (
+    <BrowserRouter>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/login" element={<LogInPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+};
 
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/login' element={<LogInPage />}/>
-                <Route path='/signup' element={<SignupPage />}/>
-            </Routes>
-        </BrowserRouter>
-    )
-}
-
-export default AppRouter
+export default AppRouter;
