@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, startTransition } from 'react'
 import { AppBar, Toolbar, Tabs, Tab } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Link, useLocation } from 'react-router-dom'
@@ -9,8 +9,10 @@ const Header = () => {
   const [value, setValue] = React.useState('LOGIN')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue)
-  }
+    startTransition(() => {
+      setValue(newValue);
+    });
+  };
 
   return (
     <AppBar position="static">
@@ -29,7 +31,7 @@ const Header = () => {
       ) : (
         <Toolbar>
           <StyledBox>
-            <Tabs
+              <Tabs
               value={value}
               onChange={handleChange}
               indicatorColor="secondary"
