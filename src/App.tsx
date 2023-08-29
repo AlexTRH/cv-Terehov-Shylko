@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import LoginPage from './pages/auth/LoginPage/LoginPage'
+import AppRouter from './routes/Routes';
 import './App.css'
 
 function App() {
 
-  return < LoginPage />
+  return < AppRouter />
 }
 
 export default App

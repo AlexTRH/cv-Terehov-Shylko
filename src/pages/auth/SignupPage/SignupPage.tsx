@@ -5,7 +5,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Box, Button, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { NavLink } from 'react-router-dom';
-import { IFormInput } from './types'
+import { IFormInput } from '../LoginPage/types'
 import theme from '../../../themes/themes';
 import {
     FormAuth,
@@ -15,9 +15,9 @@ import {
     StyledLoadingButton,
     StyledTextField,
     StyledTypography
-} from './Login.styles';
+} from '../LoginPage/Login.styles';
 
-const LoginPage: FC = () => {
+const SignupPage: FC = () => {
     const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
     const showPassword = () => {
         setHiddenPassword((el) => !el);
@@ -41,8 +41,8 @@ const LoginPage: FC = () => {
             <Box paddingTop={35}>
                 <PaperAuth elevation={24}>
                     <StyledGrid container direction="column">
-                        <StyledTypography variant="h4">Welcome back!</StyledTypography>
-                        <Typography>Hello again! Sign in to continue</Typography>
+                        <StyledTypography variant="h4">Register Now!</StyledTypography>
+                        <Typography>Welcome! Sign up to continue.</Typography>
                         <FormAuth onSubmit={handleSubmit(onSubmit)}>
                             <StyledTextField
                                 fullWidth
@@ -82,7 +82,7 @@ const LoginPage: FC = () => {
                                 variant="contained"
                             //   loading={loading}
                             >
-                                Login
+                                Sign up
                             </StyledLoadingButton>
 
                             <Button
@@ -91,9 +91,9 @@ const LoginPage: FC = () => {
                                 type="submit"
                                 variant="text"
                                 component={NavLink}
-                                to={'/signup'}
+                                to={'/login'}
                             >
-                                I don`t have an account
+                                I have an account
                             </Button>
                         </FormAuth>
                     </StyledGrid>
@@ -104,4 +104,4 @@ const LoginPage: FC = () => {
     );
 };
 
-export default LoginPage;
+export default SignupPage;
