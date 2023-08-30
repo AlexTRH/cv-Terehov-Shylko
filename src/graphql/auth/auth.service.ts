@@ -20,6 +20,15 @@ class AuthService implements IAuthService {
     }
   }
 
+   addUserToStorage(user: IUser, access_token: string) {
+    this.user$(user);
+    this.access_token$(access_token);
+    this.storageService.setItem('user', JSON.stringify(user));
+    this.storageService.setItem('access_token', access_token);
+    console.log('user', user)
+    console.log('access_token', access_token)
+  }
+
   login(user: IUser, access_token: string) {
     this.user$(user)
     this.access_token$(access_token)
