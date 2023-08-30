@@ -1,10 +1,16 @@
 import { useState } from 'react'
+import { ApolloProvider } from '@apollo/client';
+import { client } from './graphql/client';
 import AppRouter from './routes/Routes';
 import './App.css'
 
 function App() {
 
-  return < AppRouter />
+  return (
+    <ApolloProvider client={client}>
+      < AppRouter />
+    </ApolloProvider>
+  )
 }
 
 export default App

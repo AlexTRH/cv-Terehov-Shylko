@@ -8,6 +8,8 @@ const httpLink = new HttpLink({
   uri: process.env.GRAPHQL_API_URL,
 })
 
+console.log(process.env.GRAPHQL_API_URL)
+
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {

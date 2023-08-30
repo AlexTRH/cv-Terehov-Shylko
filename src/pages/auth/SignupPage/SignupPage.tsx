@@ -1,5 +1,11 @@
 import React, { FC, useState } from 'react';
 import Header from '../../../components/Header/Header';
+import { useMutation } from '@apollo/client';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { authService } from '../../../graphql/auth/auth.service';
+import { SignupResult } from '../../../graphql/auth/auth.types';
+import { SIGNUP } from '../../../graphql/auth/index';
+import { schema } from './validationSchema';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Box, Button, Typography } from '@mui/material';
@@ -19,6 +25,8 @@ import {
 
 const SignupPage: FC = () => {
     const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
+    const [signup, { loading }] = useMutation<SignupResult>(SIGNUP);
+
     const showPassword = () => {
         setHiddenPassword((el) => !el);
     };
@@ -29,11 +37,16 @@ const SignupPage: FC = () => {
         formState: { errors }
     } = useForm<IFormInput>({
         defaultValues: { email: '', password: '' },
+        resolver: yupResolver(schema)
     });
 
     const onSubmit = async (input: IFormInput) => {
-        console.log('user data  ', input)
-    };
+    const { data } = await signup({ variables: input });
+    if (data) {
+      authService.addUserToStorage(data.signup.user, data.signup.access_token);
+      console.log("success registration")
+    }
+  };
 
     return (
         <>
@@ -80,7 +93,7 @@ const SignupPage: FC = () => {
                                 fullWidth
                                 type="submit"
                                 variant="contained"
-                            //   loading={loading}
+                                // loading={loading}
                             >
                                 Sign up
                             </StyledLoadingButton>
