@@ -1,6 +1,12 @@
 import React, { FC, useState } from 'react';
-import Header from '../../../components/Header/Header';
+import { useLazyQuery } from '@apollo/client';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { authService } from '../../../graphql/auth/auth.service';
+import { LoginResult } from '../../../graphql/auth/auth.types';
+import { LOGIN } from '../../../graphql/auth/index';
+import { schema } from '../SignupPage/validationSchema';
 
+import Header from '../../../components/Header/Header';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Box, Button, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -18,6 +24,7 @@ import {
 } from './Login.styles';
 
 const LoginPage: FC = () => {
+    const [login, { loading }] = useLazyQuery<LoginResult>(LOGIN);
     const [hiddenPassword, setHiddenPassword] = useState<boolean>(true);
     const showPassword = () => {
         setHiddenPassword((el) => !el);
@@ -29,11 +36,16 @@ const LoginPage: FC = () => {
         formState: { errors }
     } = useForm<IFormInput>({
         defaultValues: { email: '', password: '' },
+        resolver: yupResolver(schema)
     });
 
     const onSubmit = async (input: IFormInput) => {
-        console.log('user data  ', input)
-    };
+    const { data } = await login({ variables: input });
+    if (data) {
+      authService.login(data.login.user, data.login.access_token);
+      console.log('success login')
+    }
+  };
 
     return (
         <>
@@ -80,7 +92,7 @@ const LoginPage: FC = () => {
                                 fullWidth
                                 type="submit"
                                 variant="contained"
-                            //   loading={loading}
+                                loading={loading}
                             >
                                 Login
                             </StyledLoadingButton>
