@@ -1,11 +1,11 @@
 import { MutationFunction, useMutation, useQuery } from '@apollo/client'
 import { IPosition } from '../interfaces/position.interface'
 import {
-  CREATE_POSITION,
-  DELETE_POSITION,
-  POSITIONS,
-  UPDATE_POSITION,
-} from '../graphql/positions'
+  getCreatePositionMutation,
+  getDeletePositionMutation,
+  getPositionsQuery,
+  getUpdatePositionMutation,
+} from '../graphql/positions/queries'
 import {
   CreatePositionResult,
   PositionsResult,
@@ -13,7 +13,7 @@ import {
 } from '../graphql/positions/positions.types'
 
 export const usePositions = (): [IPosition[], boolean] => {
-  const { data, loading } = useQuery<PositionsResult>(POSITIONS)
+  const { data, loading } = useQuery<PositionsResult>(getPositionsQuery)
 
   return [data?.positions || [], loading]
 }
@@ -23,9 +23,9 @@ export const usePositionCreate = (): [
   boolean,
 ] => {
   const [createPosition, { loading }] = useMutation<CreatePositionResult>(
-    CREATE_POSITION,
+    getCreatePositionMutation,
     {
-      refetchQueries: [POSITIONS],
+      refetchQueries: [getPositionsQuery],
     }
   )
   return [createPosition, loading]
@@ -35,13 +35,14 @@ export const usePositionUpdate = (): [
   MutationFunction<UpdatePositionResult>,
   boolean,
 ] => {
-  const [updatePosition, { loading }] =
-    useMutation<UpdatePositionResult>(UPDATE_POSITION)
+  const [updatePosition, { loading }] = useMutation<UpdatePositionResult>(
+    getUpdatePositionMutation
+  )
   return [updatePosition, loading]
 }
 
 export const usePositionDelete = (item: IPosition) => {
-  const [deletePosition] = useMutation(DELETE_POSITION, {
+  const [deletePosition] = useMutation(getDeletePositionMutation, {
     variables: {
       id: item.id,
     },

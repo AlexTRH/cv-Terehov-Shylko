@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const POSITIONS = gql`
+export const getPositionsQuery = gql`
   query Positions {
     positions {
       id
@@ -9,7 +9,7 @@ export const POSITIONS = gql`
   }
 `
 
-export const CREATE_POSITION = gql`
+export const getCreatePositionMutation = gql`
   mutation CreatePosition($position: PositionInput!) {
     createPosition(position: $position) {
       id
@@ -18,7 +18,7 @@ export const CREATE_POSITION = gql`
   }
 `
 
-export const UPDATE_POSITION = gql`
+export const getUpdatePositionMutation = gql`
   mutation UpdatePosition($id: ID!, $position: PositionInput!) {
     updatePosition(id: $id, position: $position) {
       id
@@ -27,7 +27,7 @@ export const UPDATE_POSITION = gql`
   }
 `
 
-export const DELETE_POSITION = gql`
+export const getDeletePositionMutation = gql`
   mutation DeletePosition($id: ID!) {
     deletePosition(id: $id) {
       affected

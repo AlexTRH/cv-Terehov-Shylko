@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogTitle,
 } from '@mui/material'
-import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
+import { createDialogHook } from '../../../hooks/create-dialog-hook.helper'
 import { ConfirmDialogProps } from './confirm.types'
 
 const ConfirmDialog: FC<ConfirmDialogProps> = ({

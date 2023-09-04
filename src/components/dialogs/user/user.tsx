@@ -5,27 +5,14 @@ import { DepartmentSelect } from '../../molecules/department-select'
 import { PositionSelect } from '../../molecules/position-select'
 import { RoleSelect } from '../../molecules/role-select'
 import { useUserCreate, useUserUpdate } from '../../../hooks/use-users.hook'
-import { createDialogHook } from '../../../helpers/create-dialog-hook.helper'
+import { createDialogHook } from '../../../hooks/create-dialog-hook.helper'
 import {
   passwordValidation,
   requiredValidation,
 } from '../../../helpers/validation.helper'
 import { UserFormValues, UserProps } from './user.types'
 import * as Styled from './user.styles'
-
-const defaultValues = {
-  auth: {
-    email: '',
-    password: '',
-  },
-  profile: {
-    first_name: '',
-    last_name: '',
-  },
-  departmentId: '',
-  positionId: '',
-  role: 'employee',
-}
+import { defaultValues } from './user.data'
 
 const User = ({ item, closeDialog }: UserProps) => {
   const methods = useForm<UserFormValues>({

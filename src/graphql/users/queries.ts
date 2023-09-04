@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const USERS = gql`
+export const getUsersQuery = gql`
   query Users {
     users {
       id
@@ -19,7 +19,7 @@ export const USERS = gql`
   }
 `
 
-export const USER = gql`
+export const getUserQuery = gql`
   query User($id: ID!) {
     user(id: $id) {
       id
@@ -56,7 +56,7 @@ export const USER = gql`
   }
 `
 
-export const USER_FULL_NAME = gql`
+export const getUserFullNameQuery = gql`
   query User($id: ID!) {
     user(id: $id) {
       id
@@ -69,7 +69,7 @@ export const USER_FULL_NAME = gql`
   }
 `
 
-export const USER_CVS = gql`
+export const getUserCVsQuery = gql`
   query User($id: ID!) {
     user(id: $id) {
       id
@@ -82,7 +82,7 @@ export const USER_CVS = gql`
   }
 `
 
-export const CREATE_USER = gql`
+export const getCreateUserMutation = gql`
   mutation CreateUser($user: CreateUserInput!) {
     createUser(user: $user) {
       id
@@ -104,7 +104,7 @@ export const CREATE_USER = gql`
   }
 `
 
-export const UPDATE_USER = gql`
+export const getUpdateUserMutation = gql`
   mutation UpdateUser($id: ID!, $user: UpdateUserInput!) {
     updateUser(id: $id, user: $user) {
       id
@@ -134,7 +134,7 @@ export const UPDATE_USER = gql`
   }
 `
 
-export const DELETE_USER = gql`
+export const getDeleteUserMutation = gql`
   mutation DeleteUser($id: ID!) {
     deleteUser(id: $id) {
       affected

@@ -6,10 +6,15 @@ import {
   UsersResult,
 } from 'graphql/users/users.types'
 import { IUser } from 'interfaces/user.interface'
-import { CREATE_USER, DELETE_USER, UPDATE_USER, USERS } from '../graphql/users'
+import {
+  getCreateUserMutation,
+  getDeleteUserMutation,
+  getUpdateUserMutation,
+  getUsersQuery,
+} from '../graphql/users/queries'
 
 export const useUsers = (): [IUser[], boolean] => {
-  const { data, loading } = useQuery<UsersResult>(USERS)
+  const { data, loading } = useQuery<UsersResult>(getUsersQuery)
   return [data?.users || [], loading]
 }
 
@@ -17,9 +22,12 @@ export const useUserCreate = (): [
   MutationFunction<CreateUserResult>,
   boolean,
 ] => {
-  const [createUser, { loading }] = useMutation<CreateUserResult>(CREATE_USER, {
-    refetchQueries: [USERS],
-  })
+  const [createUser, { loading }] = useMutation<CreateUserResult>(
+    getCreateUserMutation,
+    {
+      refetchQueries: [getUsersQuery],
+    }
+  )
   return [createUser, loading]
 }
 
@@ -30,12 +38,12 @@ export const useUserUpdate = (): [
   const [updateUser, { loading }] = useMutation<
     UpdateUserResult,
     UpdateUserInput
-  >(UPDATE_USER)
+  >(getUpdateUserMutation)
   return [updateUser, loading]
 }
 
 export const useUserDelete = (item: IUser): [MutationFunction, boolean] => {
-  const [deleteUser, { loading }] = useMutation(DELETE_USER, {
+  const [deleteUser, { loading }] = useMutation(getDeleteUserMutation, {
     update(cache) {
       const id = cache.identify({ id: item.id, __typename: 'User' })
       cache.evict({ id })

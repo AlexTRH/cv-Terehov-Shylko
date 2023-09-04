@@ -1,8 +1,8 @@
 import { ApolloClient, InMemoryCache, HttpLink, from } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 import { onError } from '@apollo/client/link/error'
-import { authService } from './auth/auth.service'
-import { notificationsService } from './notifications/notifications.service'
+import { authService } from '../graphql/auth/auth.service'
+import { notificationsService } from '../graphql/notifications/notifications.service'
 
 const httpLink = new HttpLink({
   uri: process.env.GRAPHQL_API_URL,
