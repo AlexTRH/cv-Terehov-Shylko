@@ -6,6 +6,7 @@ import { authService } from '../../../graphql/auth/auth.service'
 import { SignupResult } from '../../../graphql/auth/auth.types'
 import { getSignUpMutation } from '../../../graphql/auth/queries'
 import { schema } from './validationSchema'
+import { RoutesPath } from '../../../constants/routes.constants'
 
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
@@ -44,7 +45,6 @@ const SignupPage: FC = () => {
     const { data } = await signup({ variables: input })
     if (data) {
       authService.addUserToStorage(data.signup.user, data.signup.access_token)
-      console.log('success registration')
     }
   }
 
@@ -93,7 +93,7 @@ const SignupPage: FC = () => {
                 fullWidth
                 type="submit"
                 variant="contained"
-                // loading={loading}
+                loading={loading}
               >
                 Sign up
               </StyledLoadingButton>
@@ -104,7 +104,7 @@ const SignupPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={'/login'}
+                to={RoutesPath.LOGIN}
               >
                 I have an account
               </Button>
