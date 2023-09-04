@@ -15,6 +15,7 @@ import { TableRowProps } from '../../templates/table/table.types'
 import { ActionsMenu } from '../../atoms/actions-menu'
 import { useUserDialog } from '../../dialogs/user'
 import { useConfirmDialog } from '../../dialogs/confirm'
+import { UserActions } from '../../../constants/users-table-row.constants'
 
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const navigate = useNavigate()
@@ -25,47 +26,67 @@ const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const [deleteUser] = useUserDelete(item)
   const [openConfirmDialog] = useConfirmDialog()
 
+  const { id, profile, email, department_name, position_name } = item
+
   const handleProfile = () => {
-    navigate(`/employees/${item.id}/profile`)
+    navigate(`/employees/${id}/profile`)
   }
 
   const handleUpdate = () => {
     openUserDialog({ item })
   }
 
-  const handleDelete = () => {
+  const confirmDeleteUser = () => {
     openConfirmDialog({
-      dialogTitle: 'Delete user',
+      dialogTitle: t(UserActions.DeleteUser),
       dialogContent: (
         <Typography>
-          {t('Are you sure you want to delete user')}{' '}
-          <b>{item.profile.full_name || item.email}</b>?
+          {t('Are you sure you want to delete user')} <b>{getUserName()}</b>?
         </Typography>
       ),
-      confirmCallback: () => deleteUser({ variables: { id: item.id } }),
+      confirmCallback: () => deleteUser({ variables: { id } }),
+    })
+  }
+
+  const getUserName = () => {
+    return profile.full_name || email
+  }
+
+  const replaceActionLabel = (label: string): string => {
+    return label.replace(/Profile|Update user|Delete user/gi, (match) => {
+      switch (match) {
+        case 'Profile':
+          return t(UserActions.Profile)
+        case 'Update user':
+          return t(UserActions.UpdateUser)
+        case 'Delete user':
+          return t(UserActions.DeleteUser)
+        default:
+          return match
+      }
     })
   }
 
   return (
     <TableRow>
       <TableCell>
-        <Avatar src={item.profile.avatar}>
-          {item.profile.full_name?.[0] || item.email[0]}
+        <Avatar src={profile.avatar}>
+          {profile.full_name?.[0] || email[0]}
         </Avatar>
       </TableCell>
-      <TableCell>{item.profile.first_name}</TableCell>
-      <TableCell>{item.profile.last_name}</TableCell>
-      <TableCell>{item.email}</TableCell>
-      <TableCell>{item.department_name}</TableCell>
-      <TableCell>{item.position_name}</TableCell>
+      <TableCell>{profile.first_name}</TableCell>
+      <TableCell>{profile.last_name}</TableCell>
+      <TableCell>{email}</TableCell>
+      <TableCell>{department_name}</TableCell>
+      <TableCell>{position_name}</TableCell>
       <TableCell>
         <ActionsMenu>
-          <MenuItem onClick={handleProfile}>{t('Profile')}</MenuItem>
+          <MenuItem onClick={handleProfile}>{t(UserActions.Profile)}</MenuItem>
           <MenuItem disabled={!isAdmin && !isSelf} onClick={handleUpdate}>
-            {t('Update user')}
+            {replaceActionLabel(t(UserActions.UpdateUser))}
           </MenuItem>
-          <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-            {t('Delete user')}
+          <MenuItem disabled={!isAdmin} onClick={confirmDeleteUser}>
+            {replaceActionLabel(t(UserActions.DeleteUser))}
           </MenuItem>
         </ActionsMenu>
       </TableCell>

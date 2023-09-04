@@ -7,9 +7,9 @@ const ActionsMenu = ({ children }: ActionsMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
 
-  const handleOpen = (event: MouseEvent<HTMLElement>) => {
+  const handleOpen = useCallback((event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
-  }
+  }, [])
 
   const handleClose = useCallback(() => {
     setAnchorEl(null)
@@ -25,11 +25,11 @@ const ActionsMenu = ({ children }: ActionsMenuProps) => {
         open={open}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'right'
+          horizontal: 'right',
         }}
         transformOrigin={{
           vertical: 'top',
-          horizontal: 'right'
+          horizontal: 'right',
         }}
         onClick={handleClose}
       >

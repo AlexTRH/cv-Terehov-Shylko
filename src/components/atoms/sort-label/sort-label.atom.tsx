@@ -1,6 +1,5 @@
 import { memo, useContext } from 'react'
 import { TableSortLabel } from '@mui/material'
-import { Path } from 'react-hook-form'
 import { Item } from '../../templates/table/table.types'
 import { TableSortContext } from '../../templates/table/table.context'
 import { changeOrder } from '../../../helpers/table-sort.helper'
@@ -15,7 +14,9 @@ const SortLabel = <K extends string>({
   const active = sortBy === column
 
   const handleClick = () => {
-    active && setOrder(changeOrder)
+    if (active) {
+      setOrder(changeOrder)
+    }
     setSortBy(column)
   }
 
@@ -33,7 +34,6 @@ const SortLabel = <K extends string>({
 
 const SortLabelComponent = memo(SortLabel)
 
-export const createSortLabel = <T extends Item>(
-  column: Path<T>,
-  label: string
-) => <SortLabelComponent column={column}>{label}</SortLabelComponent>
+export const createSortLabel = (column: string, label: string) => (
+  <SortLabelComponent column={column}>{label}</SortLabelComponent>
+)

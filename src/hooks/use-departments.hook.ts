@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client'
 import { IDepartment } from '../interfaces/department.interface'
-import { DEPARTMENTS } from '../graphql/departments'
+import { getDepartmentsQuery } from '../graphql/departments/queries'
 import { DepartmentsResult } from '../graphql/departments/departments.types'
 
 export const useDepartments = (): [IDepartment[], boolean] => {
-  const { data, loading } = useQuery<DepartmentsResult>(DEPARTMENTS)
+  const { data, loading } = useQuery<DepartmentsResult>(getDepartmentsQuery)
 
   return [data?.departments || [], loading]
 }

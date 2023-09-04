@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
 
-export const CVS = gql`
+export const getCVsQuery = gql`
   query CVS {
     cvs {
       id
