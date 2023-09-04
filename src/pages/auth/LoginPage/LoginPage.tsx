@@ -5,6 +5,7 @@ import { authService } from '../../../graphql/auth/auth.service'
 import { LoginResult } from '../../../graphql/auth/auth.types'
 import { getLoginQuery } from '../../../graphql/auth/queries'
 import { schema } from '../SignupPage/validationSchema'
+import { RoutesPath } from '../../../constants/routes.constants'
 
 import Header from '../../../components/Header/Header'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
@@ -43,7 +44,6 @@ const LoginPage: FC = () => {
     const { data } = await login({ variables: input })
     if (data) {
       authService.login(data.login.user, data.login.access_token)
-      console.log('success login')
     }
   }
 
@@ -103,7 +103,7 @@ const LoginPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={'/signup'}
+                to={RoutesPath.SIGNUP}
               >
                 I don`t have an account
               </Button>
