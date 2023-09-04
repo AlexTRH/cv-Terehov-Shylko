@@ -45,7 +45,6 @@ const SignupPage: FC = () => {
     const { data } = await signup({ variables: input })
     if (data) {
       authService.addUserToStorage(data.signup.user, data.signup.access_token)
-      console.log('success registration')
     }
   }
 
