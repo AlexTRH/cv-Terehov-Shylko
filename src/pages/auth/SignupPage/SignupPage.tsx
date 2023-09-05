@@ -104,7 +104,7 @@ const SignupPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.LOGIN}
+                to={RoutesPath.login}
               >
                 I have an account
               </Button>

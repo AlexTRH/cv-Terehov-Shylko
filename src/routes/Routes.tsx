@@ -12,9 +12,9 @@ const AppRouter = () => {
    const isAuth = useReactiveVar(authService.access_token$);
 
   const redirectPath = isAuth ? (
-    <Navigate to={RoutesPath.MAIN} replace />
+    <Navigate to={RoutesPath.main} replace />
   ) : (
-    <Navigate to={RoutesPath.LOGIN} replace />
+    <Navigate to={RoutesPath.login} replace />
   );
 
   return (
@@ -22,9 +22,9 @@ const AppRouter = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route index element={redirectPath} />
-          <Route path={RoutesPath.LOGIN} element={<LogInPage />} />
-          <Route path={RoutesPath.SIGNUP} element={<SignupPage />} />
-          <Route path={RoutesPath.MAIN} element={<EmployeesPage />} />
+          <Route path={RoutesPath.login} element={<LogInPage />} />
+          <Route path={RoutesPath.signup} element={<SignupPage />} />
+          <Route path={RoutesPath.main} element={<EmployeesPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

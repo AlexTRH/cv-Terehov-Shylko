@@ -103,7 +103,7 @@ const LoginPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.SIGNUP}
+                to={RoutesPath.signup}
               >
                 I don`t have an account
               </Button>
