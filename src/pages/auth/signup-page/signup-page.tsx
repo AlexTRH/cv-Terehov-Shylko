@@ -5,14 +5,14 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { authService } from '../../../graphql/auth/auth.service'
 import { SignupResult } from '../../../graphql/auth/auth.types'
 import { getSignUpMutation } from '../../../graphql/auth/auth.queries'
-import { schema } from './validationSchema'
+import { schema } from './validation-schema'
 import { RoutesPath } from '../../../constants/routes.constants'
 
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
-import { IFormInput } from '../loginPage/types'
+import { IFormInput } from '../login-page/types'
 import theme from '../../../themes/themes'
 import {
   FormAuth,
@@ -22,7 +22,7 @@ import {
   StyledLoadingButton,
   StyledTextField,
   StyledTypography,
-} from '../loginPage/login.styles'
+} from '../login-page/login.styles'
 
 const SignupPage: FC = () => {
   const [hiddenPassword, setHiddenPassword] = useState<boolean>(true)
@@ -104,7 +104,7 @@ const SignupPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.login}
+                to={RoutesPath.Login}
               >
                 I have an account
               </Button>

@@ -43,13 +43,13 @@ const Header = () => {
                 value="LOGIN"
                 label="LOGIN"
                 component={Link}
-                to={RoutesPath.login}
+                to={RoutesPath.Login}
               ></Tab>
               <Tab
                 value="SIGNUP"
                 label="SIGNUP"
                 component={Link}
-                to={RoutesPath.signup}
+                to={RoutesPath.Signup}
               ></Tab>
             </Tabs>
           </StyledBox>
