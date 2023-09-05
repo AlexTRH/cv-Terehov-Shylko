@@ -5,7 +5,7 @@ import {
   getDeletePositionMutation,
   getPositionsQuery,
   getUpdatePositionMutation,
-} from '../graphql/positions/queries'
+} from '../graphql/positions/positions.queries'
 import {
   CreatePositionResult,
   PositionsResult,

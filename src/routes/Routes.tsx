@@ -3,8 +3,8 @@ import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { useReactiveVar } from '@apollo/client';
 import { authService } from '../graphql/auth/auth.service';
 import { RoutesPath } from '../constants/routes.constants';
-import LogInPage from '../pages/auth/LoginPage/index'
-import SignupPage from '../pages/auth/SignupPage/index'
+import LogInPage from '../pages/auth/loginPage/index'
+import SignupPage from '../pages/auth/signupPage/index'
 import EmployeesPage from '../pages/employees/index'
 
 

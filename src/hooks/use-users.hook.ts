@@ -11,7 +11,7 @@ import {
   getDeleteUserMutation,
   getUpdateUserMutation,
   getUsersQuery,
-} from '../graphql/users/queries'
+} from '../graphql/users/users.queries'
 
 export const useUsers = (): [IUser[], boolean] => {
   const { data, loading } = useQuery<UsersResult>(getUsersQuery)
