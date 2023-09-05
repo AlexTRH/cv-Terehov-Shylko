@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { authService } from '../../../graphql/auth/auth.service'
 import { LoginResult } from '../../../graphql/auth/auth.types'
 import { getLoginQuery } from '../../../graphql/auth/auth.queries'
-import { schema } from '../signupPage/validationSchema'
+import { schema } from '../signup-page/validation-schema'
 import { RoutesPath } from '../../../constants/routes.constants'
 
 import Header from '../../../components/header/header'
@@ -103,7 +103,7 @@ const LoginPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.signup}
+                to={RoutesPath.Signup}
               >
                 I don`t have an account
               </Button>
