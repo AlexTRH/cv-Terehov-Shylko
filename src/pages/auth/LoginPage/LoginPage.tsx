@@ -7,7 +7,6 @@ import { getLoginQuery } from '../../../graphql/auth/queries'
 import { schema } from '../SignupPage/validationSchema'
 import { RoutesPath } from '../../../constants/routes.constants'
 
-import Header from '../../../components/Header/Header'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
@@ -49,7 +48,6 @@ const LoginPage: FC = () => {
 
   return (
     <>
-      <Header />
       <Box paddingTop={35}>
         <PaperAuth elevation={24}>
           <StyledGrid container direction="column">
