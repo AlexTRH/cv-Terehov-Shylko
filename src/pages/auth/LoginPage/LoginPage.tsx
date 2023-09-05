@@ -3,11 +3,11 @@ import { useLazyQuery } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { authService } from '../../../graphql/auth/auth.service'
 import { LoginResult } from '../../../graphql/auth/auth.types'
-import { getLoginQuery } from '../../../graphql/auth/queries'
-import { schema } from '../SignupPage/validationSchema'
+import { getLoginQuery } from '../../../graphql/auth/auth.queries'
+import { schema } from '../signupPage/validationSchema'
 import { RoutesPath } from '../../../constants/routes.constants'
 
-import Header from '../../../components/Header/Header'
+import Header from '../../../components/header/header'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
@@ -22,7 +22,7 @@ import {
   StyledLoadingButton,
   StyledTextField,
   StyledTypography,
-} from './Login.styles'
+} from './login.styles'
 
 const LoginPage: FC = () => {
   const [login, { loading }] = useLazyQuery<LoginResult>(getLoginQuery)
@@ -103,7 +103,7 @@ const LoginPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.SIGNUP}
+                to={RoutesPath.signup}
               >
                 I don`t have an account
               </Button>

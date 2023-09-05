@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react'
-import Header from '../../../components/Header/Header'
+import Header from '../../../components/header/header'
 import { useMutation } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { authService } from '../../../graphql/auth/auth.service'
 import { SignupResult } from '../../../graphql/auth/auth.types'
-import { getSignUpMutation } from '../../../graphql/auth/queries'
+import { getSignUpMutation } from '../../../graphql/auth/auth.queries'
 import { schema } from './validationSchema'
 import { RoutesPath } from '../../../constants/routes.constants'
 
@@ -12,7 +12,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
-import { IFormInput } from '../LoginPage/types'
+import { IFormInput } from '../loginPage/types'
 import theme from '../../../themes/themes'
 import {
   FormAuth,
@@ -22,7 +22,7 @@ import {
   StyledLoadingButton,
   StyledTextField,
   StyledTypography,
-} from '../LoginPage/Login.styles'
+} from '../loginPage/login.styles'
 
 const SignupPage: FC = () => {
   const [hiddenPassword, setHiddenPassword] = useState<boolean>(true)
@@ -104,7 +104,7 @@ const SignupPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.LOGIN}
+                to={RoutesPath.login}
               >
                 I have an account
               </Button>
