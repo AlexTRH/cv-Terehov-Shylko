@@ -1,28 +1,26 @@
-import React, { Suspense } from 'react'
-import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
-import { useReactiveVar } from '@apollo/client'
-import { authService } from '../graphql/auth/auth.service'
-import { RoutesPath } from '../constants/routes.constants'
-import LogInPage from '../pages/auth/LoginPage/index'
-import SignupPage from '../pages/auth/SignupPage/index'
-import EmployeesPage from '../pages/employees/index'
-import Layout from '../components/templates/layout/layout.template'
+import React, { Suspense } from 'react';
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
+import { useReactiveVar } from '@apollo/client';
+import { authService } from '../graphql/auth/auth.service';
+import { RoutesPath } from '../constants/routes.constants';
+import LogInPage from '../pages/auth/LoginPage/index';
+import SignupPage from '../pages/auth/SignupPage/index';
+import EmployeesPage from '../pages/employees/index';
+import Layout from '../components/templates/layout/layout.template';
 
 const AppRouter = () => {
-  const isAuth = useReactiveVar(authService.access_token$)
-
-  const redirectPath = isAuth ? (
-    <Navigate to={RoutesPath.MAIN} replace />
-  ) : (
-    <Navigate to={RoutesPath.LOGIN} replace />
-  )
+  const isAuth = useReactiveVar(authService.access_token$);
 
   return (
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path={RoutesPath.INITIAL} element={<Layout />}>
-            <Route index element={redirectPath} />
+            {isAuth ? (
+              <Route index element={<Navigate to={RoutesPath.MAIN} replace />} />
+            ) : (
+              <Route index element={<Navigate to={RoutesPath.LOGIN} replace />} />
+            )}
             <Route path={RoutesPath.LOGIN} element={<LogInPage />} />
             <Route path={RoutesPath.SIGNUP} element={<SignupPage />} />
             <Route path={RoutesPath.MAIN} element={<EmployeesPage />} />
@@ -30,7 +28,7 @@ const AppRouter = () => {
         </Routes>
       </Suspense>
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default AppRouter
+export default AppRouter;

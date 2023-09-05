@@ -5,6 +5,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { Divider, IconButton, Menu, MenuItem, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { RoutesPath } from '../../constants/routes.constants'
 
 import { authService } from '../../graphql/auth/auth.service';
 import { UserResult } from '../../graphql/user/user.types';
@@ -35,6 +36,7 @@ export const UserMenu = () => {
 
   const handleLogout = () => {
     authService.logout();
+    navigate(RoutesPath.LOGIN)
   };
 
   const openProfile = () => {

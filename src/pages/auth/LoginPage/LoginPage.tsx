@@ -6,6 +6,7 @@ import { LoginResult } from '../../../graphql/auth/auth.types'
 import { getLoginQuery } from '../../../graphql/auth/queries'
 import { schema } from '../SignupPage/validationSchema'
 import { RoutesPath } from '../../../constants/routes.constants'
+import { useNavigate } from 'react-router-dom';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
@@ -30,6 +31,8 @@ const LoginPage: FC = () => {
     setHiddenPassword((el) => !el)
   }
 
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -43,6 +46,7 @@ const LoginPage: FC = () => {
     const { data } = await login({ variables: input })
     if (data) {
       authService.login(data.login.user, data.login.access_token)
+      navigate(RoutesPath.MAIN)
     }
   }
 
