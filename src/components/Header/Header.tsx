@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { StyledBox, StyledIconButton, StyledToolbar } from './header.styles'
 import { RoutesPath } from '../../constants/routes.constants';
 //import { SideMenu } from '../SideMenu';
-import { UserMenu } from '../UserMenu/UserMenu';
+import { UserMenu } from '../user-menu/user-menu';
 
 const Header = () => {
   const isAuth = useReactiveVar(authService.access_token$);

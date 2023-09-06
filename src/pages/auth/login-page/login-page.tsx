@@ -8,7 +8,6 @@ import { schema } from '../signup-page/validation-schema'
 import { RoutesPath } from '../../../constants/routes.constants'
 import { useNavigate } from 'react-router-dom';
 
-import Header from '../../../components/header/header'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'

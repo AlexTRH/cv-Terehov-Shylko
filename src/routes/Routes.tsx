@@ -6,7 +6,7 @@ import { RoutesPath } from '../constants/routes.constants';
 import LogInPage from '../pages/auth/login-page/index'
 import SignupPage from '../pages/auth/signup-page/index'
 import EmployeesPage from '../pages/employees/index'
-import { Layout } from 'components/templates/layout';
+import Layout from '../components/templates/layout/layout.template';
 
 
 const AppRouter = () => {

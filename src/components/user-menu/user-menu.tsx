@@ -10,7 +10,7 @@ import { RoutesPath } from '../../constants/routes.constants'
 import { authService } from '../../graphql/auth/auth.service';
 import { UserResult } from '../../graphql/user/user.types';
 import { USER } from '../../graphql/user/queries';
-import { IconStyles, StyledAvatar, UserMenuWrap } from './userMenu.styles';
+import { IconStyles, StyledAvatar, UserMenuWrap } from './user-menu.styles';
 
 export const UserMenu = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ export const UserMenu = () => {
 
   const handleLogout = () => {
     authService.logout();
-    navigate(RoutesPath.LOGIN)
+    navigate(RoutesPath.Login)
   };
 
   const openProfile = () => {
