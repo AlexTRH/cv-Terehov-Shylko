@@ -7,12 +7,11 @@ import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
 import { RoutesPath } from '../../../constants/routes.constants'
-import { schema } from './validationSchema'
-import { getSignUpMutation } from '../../../graphql/auth/queries'
-import Header from '../../../components/Header/Header'
+import { schema } from './validation-schema'
+import { getSignUpMutation } from '../../../graphql/auth/auth.queries'
 import { SignupResult } from '../../../graphql/auth/auth.types'
 import { authService } from '../../../graphql/auth/auth.service'
-import { IFormInput } from '../LoginPage/types'
+import { IFormInput } from '../login-page/types'
 import theme from '../../../themes/themes'
 import {
   FormAuth,
@@ -22,7 +21,7 @@ import {
   StyledLoadingButton,
   StyledTextField,
   StyledTypography,
-} from '../LoginPage/Login.styles'
+} from '../login-page/login.styles'
 
 const SignupPage: FC = () => {
   const [hiddenPassword, setHiddenPassword] = useState<boolean>(true)
@@ -50,7 +49,6 @@ const SignupPage: FC = () => {
 
   return (
     <>
-      <Header />
       <Box paddingTop={35}>
         <PaperAuth elevation={24}>
           <StyledGrid container direction="column">
@@ -104,7 +102,7 @@ const SignupPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.LOGIN}
+                to={RoutesPath.Login}
               >
                 I have an account
               </Button>

@@ -4,14 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { authService } from '../../../graphql/auth/auth.service'
 import { LoginResult } from '../../../graphql/auth/auth.types'
-import { getLoginQuery } from '../../../graphql/auth/queries'
-import { schema } from '../SignupPage/validationSchema'
+import { getLoginQuery } from '../../../graphql/auth/auth.queries'
+import { schema } from '../signup-page/validation-schema'
 import { RoutesPath } from '../../../constants/routes.constants'
 
-import Header from '../../../components/Header/Header'
 import { IFormInput } from './types'
 import theme from '../../../themes/themes'
 import {
@@ -22,7 +21,7 @@ import {
   StyledLoadingButton,
   StyledTextField,
   StyledTypography,
-} from './Login.styles'
+} from './login.styles'
 
 const LoginPage: FC = () => {
   const [login, { loading }] = useLazyQuery<LoginResult>(getLoginQuery)
@@ -30,6 +29,8 @@ const LoginPage: FC = () => {
   const showPassword = () => {
     setHiddenPassword((el) => !el)
   }
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -44,12 +45,12 @@ const LoginPage: FC = () => {
     const { data } = await login({ variables: input })
     if (data) {
       authService.login(data.login.user, data.login.access_token)
+      navigate(RoutesPath.Main)
     }
   }
 
   return (
     <>
-      <Header />
       <Box paddingTop={35}>
         <PaperAuth elevation={24}>
           <StyledGrid container direction="column">
@@ -103,7 +104,7 @@ const LoginPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.SIGNUP}
+                to={RoutesPath.Signup}
               >
                 I don`t have an account
               </Button>
