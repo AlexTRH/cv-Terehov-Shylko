@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, startTransition } from 'react'
 import { AppBar, Toolbar, Tabs, Tab } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Link, useLocation } from 'react-router-dom'
 import { StyledBox, StyledIconButton, StyledToolbar } from './header.styles'
+import { RoutesPath } from '../../constants/routes.constants';
 
 const Header = () => {
   const [isAuth, setIsAuth] = useState(false)
-  const [value, setValue] = React.useState('LOGIN')
+  const [value, setValue] = useState('LOGIN')
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue)
-  }
+    startTransition(() => {
+      setValue(newValue);
+    });
+  };
 
   return (
     <AppBar position="static">
@@ -29,7 +32,7 @@ const Header = () => {
       ) : (
         <Toolbar>
           <StyledBox>
-            <Tabs
+              <Tabs
               value={value}
               onChange={handleChange}
               indicatorColor="secondary"
@@ -40,13 +43,13 @@ const Header = () => {
                 value="LOGIN"
                 label="LOGIN"
                 component={Link}
-                to={'/login'}
+                to={RoutesPath.Login}
               ></Tab>
               <Tab
                 value="SIGNUP"
                 label="SIGNUP"
                 component={Link}
-                to={'/signup'}
+                to={RoutesPath.Signup}
               ></Tab>
             </Tabs>
           </StyledBox>
