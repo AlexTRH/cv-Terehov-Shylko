@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react'
-import Header from '../../../components/header/header'
 import { useMutation } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { authService } from '../../../graphql/auth/auth.service'
@@ -50,7 +49,6 @@ const SignupPage: FC = () => {
 
   return (
     <>
-      <Header />
       <Box paddingTop={35}>
         <PaperAuth elevation={24}>
           <StyledGrid container direction="column">
