@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Breadcrumbs } from '../../features/breadcrumbs'
-import Header from '../../Header/Header'
+import Header from '../../header/header'
 import * as Styled from './layout.styles'
 
 const Layout = () => {

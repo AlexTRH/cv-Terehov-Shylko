@@ -1,17 +1,19 @@
 import React, { FC, useState } from 'react'
-import { useMutation } from '@apollo/client'
+import { useLazyQuery } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { authService } from '../../../graphql/auth/auth.service'
-import { SignupResult } from '../../../graphql/auth/auth.types'
-import { getSignUpMutation } from '../../../graphql/auth/queries'
-import { schema } from './validationSchema'
+import { LoginResult } from '../../../graphql/auth/auth.types'
+import { getLoginQuery } from '../../../graphql/auth/auth.queries'
+import { schema } from '../signup-page/validation-schema'
 import { RoutesPath } from '../../../constants/routes.constants'
+import { useNavigate } from 'react-router-dom';
 
+import Header from '../../../components/header/header'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
-import { IFormInput } from '../LoginPage/types'
+import { IFormInput } from './types'
 import theme from '../../../themes/themes'
 import {
   FormAuth,
@@ -21,15 +23,16 @@ import {
   StyledLoadingButton,
   StyledTextField,
   StyledTypography,
-} from '../LoginPage/Login.styles'
+} from './login.styles'
 
-const SignupPage: FC = () => {
+const LoginPage: FC = () => {
+  const [login, { loading }] = useLazyQuery<LoginResult>(getLoginQuery)
   const [hiddenPassword, setHiddenPassword] = useState<boolean>(true)
-  const [signup, { loading }] = useMutation<SignupResult>(getSignUpMutation)
-
   const showPassword = () => {
     setHiddenPassword((el) => !el)
   }
+
+  const navigate = useNavigate()
 
   const {
     register,
@@ -41,9 +44,10 @@ const SignupPage: FC = () => {
   })
 
   const onSubmit = async (input: IFormInput) => {
-    const { data } = await signup({ variables: input })
+    const { data } = await login({ variables: input })
     if (data) {
-      authService.addUserToStorage(data.signup.user, data.signup.access_token)
+      authService.login(data.login.user, data.login.access_token)
+      navigate(RoutesPath.Main)
     }
   }
 
@@ -52,8 +56,8 @@ const SignupPage: FC = () => {
       <Box paddingTop={35}>
         <PaperAuth elevation={24}>
           <StyledGrid container direction="column">
-            <StyledTypography variant="h4">Register Now!</StyledTypography>
-            <Typography>Welcome! Sign up to continue.</Typography>
+            <StyledTypography variant="h4">Welcome back!</StyledTypography>
+            <Typography>Hello again! Sign in to continue</Typography>
             <FormAuth onSubmit={handleSubmit(onSubmit)}>
               <StyledTextField
                 fullWidth
@@ -93,7 +97,7 @@ const SignupPage: FC = () => {
                 variant="contained"
                 loading={loading}
               >
-                Sign up
+                Login
               </StyledLoadingButton>
 
               <Button
@@ -102,9 +106,9 @@ const SignupPage: FC = () => {
                 type="submit"
                 variant="text"
                 component={NavLink}
-                to={RoutesPath.LOGIN}
+                to={RoutesPath.Signup}
               >
-                I have an account
+                I don`t have an account
               </Button>
             </FormAuth>
           </StyledGrid>
@@ -114,4 +118,4 @@ const SignupPage: FC = () => {
   )
 }
 
-export default SignupPage
+export default LoginPage
