@@ -1,6 +1,5 @@
 import { memo } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Breadcrumbs } from '../../features/breadcrumbs'
 import Header from '../../header/header'
 import * as Styled from './layout.styles'
 
@@ -9,7 +8,6 @@ const Layout = () => {
     <>
       <Header />
       <Styled.Layout maxWidth="xl">
-        {/* <Breadcrumbs /> */}
           <Outlet />
       </Styled.Layout>
     </>
