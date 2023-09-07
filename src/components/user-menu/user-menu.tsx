@@ -9,7 +9,7 @@ import { RoutesPath } from '../../constants/routes.constants'
 
 import { authService } from '../../graphql/auth/auth.service';
 import { UserResult } from '../../graphql/user/user.types';
-import { USER } from '../../graphql/user/queries';
+import { User } from '../../graphql/user/user.queries';
 import { IconStyles, StyledAvatar, UserMenuWrap } from './user-menu.styles';
 
 export const UserMenu = () => {
@@ -21,7 +21,7 @@ export const UserMenu = () => {
 
   const userData = useReactiveVar(authService.user$);
 
-  const { data } = useQuery<UserResult>(USER, {
+  const { data } = useQuery<UserResult>(User, {
     variables: { id: userData?.id }
   });
   const user = data?.user;
@@ -40,7 +40,7 @@ export const UserMenu = () => {
   };
 
   const openProfile = () => {
-    navigate(`/employees/${user?.id}/profile`);
+    navigate(RoutesPath.Employee_profile.replace(':id', `${user?.id}`), { replace: true });
   };
 
   return (
