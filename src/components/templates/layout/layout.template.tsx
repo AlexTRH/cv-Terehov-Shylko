@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from '../../header/header'
+import Header from '../../Header/Header'
 import * as Styled from './layout.styles'
 
 const Layout = () => {
@@ -8,7 +8,7 @@ const Layout = () => {
     <>
       <Header />
       <Styled.Layout maxWidth="xl">
-          <Outlet />
+        <Outlet />
       </Styled.Layout>
     </>
   )

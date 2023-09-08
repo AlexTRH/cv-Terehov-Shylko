@@ -10,14 +10,7 @@ import {
 import { Divider } from '@mui/material'
 import { RoutesPath } from '../../../constants/routes.constants'
 
-interface ListItem {
-  IconComponent?: React.ElementType
-  DividerComponent?: React.ElementType
-  name?: string
-  to?: RoutesPath
-}
-
-export const LIST_ITEMS: ListItem[] = [
+export const LIST_ITEMS = [
   {
     IconComponent: Group,
     name: 'employees',
@@ -27,6 +20,7 @@ export const LIST_ITEMS: ListItem[] = [
     IconComponent: FolderCopyOutlined,
     name: 'projects',
     to: RoutesPath.Projects,
+  },
   {
     IconComponent: ContactPageOutlined,
     name: 'cvs',

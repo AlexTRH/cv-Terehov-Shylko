@@ -17,9 +17,10 @@ const SideMenu: FC<SideMenuProps> = ({ open, onClose }) => {
         </Styled.ToolBar>
         <Divider />
         <Styled.List>
-          {LIST_ITEMS.map(({ IconComponent, DividerComponent, name, to }) => (
-            DividerComponent && <DividerComponent key="divider" />
-          ))}
+          {LIST_ITEMS.map(({ IconComponent, DividerComponent, name, to }) => {
+            if (DividerComponent) {
+              return <DividerComponent key="divider" />
+            }
             return (
               <SideMenuItem
                 key={name}
