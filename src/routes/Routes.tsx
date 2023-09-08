@@ -1,12 +1,13 @@
-import React, { Suspense } from 'react';
-import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
-import { useReactiveVar } from '@apollo/client';
-import { authService } from '../graphql/auth/auth.service';
-import { RoutesPath } from '../constants/routes.constants';
+import React, { Suspense } from 'react'
+import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
+import { useReactiveVar } from '@apollo/client'
+import { authService } from '../graphql/auth/auth.service'
+import { RoutesPath } from '../constants/routes.constants'
 import LogInPage from '../pages/auth/login-page/index'
 import SignupPage from '../pages/auth/signup-page/index'
 import EmployeesPage from '../pages/employees/index'
-import Layout from '../components/templates/layout/layout.template';
+import SkillsPage from '../pages/skills/index'
+import Layout from '../components/templates/layout/layout.template'
 
 
 const AppRouter = () => {
@@ -25,11 +26,12 @@ const AppRouter = () => {
             <Route path={RoutesPath.Login} element={<LogInPage />} />
             <Route path={RoutesPath.Signup} element={<SignupPage />} />
             <Route path={RoutesPath.Main} element={<EmployeesPage />} />
+            <Route path={RoutesPath.Skills} element={<SkillsPage />} />
           </Route>
         </Routes>
       </Suspense>
     </BrowserRouter>
-  );
-};
+  )
+}
 
-export default AppRouter;
+export default AppRouter

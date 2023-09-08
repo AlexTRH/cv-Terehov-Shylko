@@ -13,7 +13,7 @@ export const LIST_ITEMS = [
   {
     IconComponent: Group,
     name: 'employees',
-    to: '/employees'
+    to: '/main'
   },
   {
     IconComponent: FolderCopyOutlined,
