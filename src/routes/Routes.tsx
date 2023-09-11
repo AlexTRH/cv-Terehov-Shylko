@@ -8,6 +8,7 @@ import SignupPage from '../pages/auth/signup-page/index'
 import EmployeesPage from '../pages/employees/index'
 import Layout from '../components/templates/layout/layout.template'
 import { EmployeeProfile } from '../pages/employee-profile'
+import { EmployeeDetails } from '../pages/employee-details'
 
 const AppRouter = () => {
   const isAuth = useReactiveVar(authService.access_token$)
@@ -35,6 +36,7 @@ const AppRouter = () => {
               path={RoutesPath.Employee_profile}
               element={<EmployeeProfile />}
             />
+            <Route path=":id" element={<EmployeeDetails />} />
           </Route>
         </Routes>
       </Suspense>
