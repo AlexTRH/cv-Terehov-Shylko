@@ -9,6 +9,7 @@ import EmployeesPage from '../pages/employees/index'
 import Layout from '../components/templates/layout/layout.template'
 import { EmployeeProfile } from '../pages/employee-profile'
 import { EmployeeDetails } from '../pages/employee-details'
+import { EmployeeCvs } from '../pages/employee-cvs'
 
 const AppRouter = () => {
   const isAuth = useReactiveVar(authService.access_token$)
@@ -37,6 +38,7 @@ const AppRouter = () => {
               element={<EmployeeProfile />}
             />
             <Route path=":id" element={<EmployeeDetails />} />
+            <Route path={RoutesPath.Cvs} element={<EmployeeCvs />} />
           </Route>
         </Routes>
       </Suspense>
