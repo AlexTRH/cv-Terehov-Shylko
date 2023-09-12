@@ -27,6 +27,7 @@ export const LIST_ITEMS: ListItem[] = [
     IconComponent: FolderCopyOutlined,
     name: 'projects',
     to: RoutesPath.Projects,
+  },
   {
     IconComponent: ContactPageOutlined,
     name: 'cvs',
