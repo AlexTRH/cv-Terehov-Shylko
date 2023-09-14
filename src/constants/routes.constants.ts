@@ -15,3 +15,8 @@ export enum RoutesPath {
   Employee_languages = '/employees/:id/languages',
   Employee_cvs = '/employees/:id/cvs'
 }
+
+export enum TabsName {
+  Login = 'LOGIN',
+  Signup = 'SIGNUP'
+}

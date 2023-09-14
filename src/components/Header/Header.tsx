@@ -10,19 +10,20 @@ import {
   StyledToolbar,
 } from '../../components/Header/header.styles'
 import { RoutesPath } from '../../constants/routes.constants'
+import { TabsName } from '../../constants/routes.constants'
 import SideMenu from '../organisms/side-menu/side-menu.organism'
 import { UserMenu } from '../user-menu/user-menu'
 
 const Header = () => {
   const isAuth = useReactiveVar(authService.access_token$)
-  const [value, setValue] = useState('LOGIN')
+  const [value, setValue] = useState(TabsName.Login)
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    startTransition(() => {
-      setValue(newValue)
-    })
-  }
+ const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  startTransition(() => {
+    return setValue(newValue as TabsName)
+  })
+}
 
   const openMenu = () => {
     setIsOpen(true)
@@ -61,14 +62,14 @@ const Header = () => {
               variant="fullWidth"
             >
               <Tab
-                value="LOGIN"
-                label="LOGIN"
+                value={TabsName.Login}
+                label={TabsName.Login}
                 component={Link}
                 to={RoutesPath.Login}
               ></Tab>
               <Tab
-                value="SIGNUP"
-                label="SIGNUP"
+                value={TabsName.Signup}
+                label={TabsName.Signup}
                 component={Link}
                 to={RoutesPath.Signup}
               ></Tab>
