@@ -15,3 +15,4 @@ export enum RoutesPath {
   Employee_languages = '/employees/:id/languages',
   Employee_cvs = '/employees/:id/cvs'
 }
+

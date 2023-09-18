@@ -5,47 +5,49 @@ import {
   Group,
   Translate,
   TrendingUp,
-  WorkOutline
+  WorkOutline,
 } from '@mui/icons-material'
 import { Divider } from '@mui/material'
+import { RoutesPath } from '../../../constants/routes.constants'
+import { ListItem } from './ListItem.interface'
 
-export const LIST_ITEMS = [
+export const LIST_ITEMS: ListItem[] = [
   {
     IconComponent: Group,
     name: 'employees',
-    to: '/main'
+    to: RoutesPath.Main,
   },
   {
     IconComponent: FolderCopyOutlined,
     name: 'projects',
-    to: '/projects'
+    to: RoutesPath.Projects,
   },
   {
     IconComponent: ContactPageOutlined,
     name: 'cvs',
-    to: '/cvs'
+    to: RoutesPath.Cvs,
   },
   {
-    DividerComponent: Divider
+    DividerComponent: Divider,
   },
   {
     IconComponent: Domain,
     name: 'departments',
-    to: '/departments'
+    to: RoutesPath.Departments,
   },
   {
     IconComponent: WorkOutline,
     name: 'positions',
-    to: '/positions'
+    to: RoutesPath.Positions,
   },
   {
     IconComponent: TrendingUp,
     name: 'skills',
-    to: '/skills'
+    to: RoutesPath.Skills,
   },
   {
     IconComponent: Translate,
     name: 'languages',
-    to: '/languages'
-  }
+    to: RoutesPath.Languages,
+  },
 ]
