@@ -1,17 +1,16 @@
 import React, { FC, useState } from 'react'
-import Header from '../../../components/header/header'
 import { useMutation } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { authService } from '../../../graphql/auth/auth.service'
-import { SignupResult } from '../../../graphql/auth/auth.types'
-import { getSignUpMutation } from '../../../graphql/auth/auth.queries'
-import { schema } from './validation-schema'
-import { RoutesPath } from '../../../constants/routes.constants'
 
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { NavLink } from 'react-router-dom'
+import { RoutesPath } from '../../../constants/routes.constants'
+import { schema } from './validation-schema'
+import { getSignUpMutation } from '../../../graphql/auth/auth.queries'
+import { SignupResult } from '../../../graphql/auth/auth.types'
+import { authService } from '../../../graphql/auth/auth.service'
 import { IFormInput } from '../login-page/types'
 import theme from '../../../themes/themes'
 import {
@@ -50,7 +49,6 @@ const SignupPage: FC = () => {
 
   return (
     <>
-      <Header />
       <Box paddingTop={35}>
         <PaperAuth elevation={24}>
           <StyledGrid container direction="column">

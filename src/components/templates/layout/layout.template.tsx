@@ -1,7 +1,5 @@
-import { memo, Suspense } from 'react'
+import { memo } from 'react'
 import { Outlet } from 'react-router-dom'
-import { PageLoader } from '../../atoms/page-loader'
-import { Breadcrumbs } from '../../features/breadcrumbs'
 import Header from '../../header/header'
 import * as Styled from './layout.styles'
 
@@ -10,10 +8,7 @@ const Layout = () => {
     <>
       <Header />
       <Styled.Layout maxWidth="xl">
-        <Breadcrumbs />
-        <Suspense fallback={<PageLoader />}>
           <Outlet />
-        </Suspense>
       </Styled.Layout>
     </>
   )
