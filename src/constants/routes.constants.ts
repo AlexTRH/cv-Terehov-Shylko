@@ -16,7 +16,3 @@ export enum RoutesPath {
   Employee_cvs = '/employees/:id/cvs'
 }
 
-export enum TabsName {
-  Login = 'LOGIN',
-  Signup = 'SIGNUP'
-}
