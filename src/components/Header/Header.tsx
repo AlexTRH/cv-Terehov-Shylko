@@ -8,21 +8,22 @@ import {
   StyledBox,
   StyledIconButton,
   StyledToolbar,
-} from '../../components/Header/header.styles'
+} from '../../components/header/header.styles'
 import { RoutesPath } from '../../constants/routes.constants'
+import { AuthTabsName } from '../../constants/tabs.constants'
 import SideMenu from '../organisms/side-menu/side-menu.organism'
 import { UserMenu } from '../user-menu/user-menu'
 
 const Header = () => {
   const isAuth = useReactiveVar(authService.access_token$)
-  const [value, setValue] = useState('LOGIN')
+  const [value, setValue] = useState(AuthTabsName.Login)
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    startTransition(() => {
-      setValue(newValue)
-    })
-  }
+ const handleChange = (event: React.SyntheticEvent, newValue: AuthTabsName) => {
+  startTransition(() => {
+    return setValue(newValue)
+  })
+}
 
   const openMenu = () => {
     setIsOpen(true)
@@ -61,14 +62,14 @@ const Header = () => {
               variant="fullWidth"
             >
               <Tab
-                value="LOGIN"
-                label="LOGIN"
+                value={AuthTabsName.Login}
+                label={AuthTabsName.Login}
                 component={Link}
                 to={RoutesPath.Login}
               ></Tab>
               <Tab
-                value="SIGNUP"
-                label="SIGNUP"
+                value={AuthTabsName.Signup}
+                label={AuthTabsName.Signup}
                 component={Link}
                 to={RoutesPath.Signup}
               ></Tab>
