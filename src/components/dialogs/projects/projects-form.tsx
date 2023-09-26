@@ -6,8 +6,8 @@ import { getCreateProjectMutation, getProjectsQuery } from '../../../graphql/pro
 import {
   StyledBox,
   StyledDialogTitle,
-} from './skills-dialog.styles'
-import { FormInput } from './skill-dialog.types'
+} from '../skills/skills-dialog.styles'
+import { FormInput } from '../skills/skill-dialog.types'
 import FormFields from '../../molecules/form-fields/form-fields.molecule'
 
 interface Props {
