@@ -12,15 +12,9 @@ import {
 } from './skills-dialog.styles'
 import { FormInput } from './skill-dialog.types'
 import FormFields from '../../molecules/form-fields/form-fields.molecule'
+import { UpdateSkillFormProps } from './skill-update-form.interface'
 
-interface Props {
-  opened: boolean
-  close: () => void
-  confirm: () => void
-  id: string
-}
-
-const UpdateSkillForm: React.FC<Props> = ({ close, confirm, opened, id }) => {
+const UpdateSkillForm: React.FC<UpdateSkillFormProps> = ({ close, confirm, opened, id }) => {
   const { control, handleSubmit, reset } = useForm<FormInput>()
 
   const [UpdateSkill] = useMutation(getUpdateSkillMutation, {
