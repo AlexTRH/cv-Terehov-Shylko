@@ -24,7 +24,7 @@ export const SkillsTableConfirm = () => {
     setFormOpened(false)
   }
 
-  const create = async () => {
+  const create = () => {
     closeForm()
   }
 
