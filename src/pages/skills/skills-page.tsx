@@ -6,32 +6,29 @@ import { SkillsTableHead } from '../../components/organisms/skills-table-head/sk
 import { SkillsTableRow } from '../../components/organisms/skills-table-row/skills-table-row.organism'
 import { getSkillsQuery } from '../../graphql/skills/skills.queries'
 import { ISkill } from '../../interfaces/skill.interface'
+import { SkillsResult } from './skills-page.type'
 
 const Table = createTable<ISkill>()
 
-type SkillsResult = {
-  skills: ISkill[]
-}
+
 
 const SkillsPage = () => {
   const { data, loading, error } = useQuery<SkillsResult>(getSkillsQuery)
 
+  if (loading) {
+    return <PageLoader />
+  }
+
   return (
-    <>
-      {loading ? (
-        <PageLoader />
-      ) : (
-        <Table
-          items={data?.skills || []}
-          TableToolComponent={SkillsTableConfirm}
-          TableHeadComponent={SkillsTableHead}
-          TableRowComponent={SkillsTableRow}
-          searchBy={['name']}
-          defaultSortBy="name"
-          loading={loading}
-        />
-      )}
-    </>
+    <Table
+      items={data?.skills || []}
+      TableToolComponent={SkillsTableConfirm}
+      TableHeadComponent={SkillsTableHead}
+      TableRowComponent={SkillsTableRow}
+      searchBy={['name']}
+      defaultSortBy="name"
+      loading={loading}
+    />
   )
 }
 

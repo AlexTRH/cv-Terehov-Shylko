@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@mui/material'
 import { SearchInput } from '../../molecules/search-input'
-import CreateSkillForm from '../../dialogs/skills/skills';
+import CreateSkillForm from '../../dialogs/skills/skills'
 import { useUser } from '../../../hooks/use-user.hook'
 
 export const SkillsTableConfirm = () => {
+  const { t } = useTranslation()
   const [formOpened, setFormOpened] = useState(false);
    const { isAdmin } = useUser()
 
-  const CreateClick = () => {
+  const createClick = () => {
     setFormOpened(true);
   };
 
@@ -27,9 +29,9 @@ export const SkillsTableConfirm = () => {
         disabled={!isAdmin}
         color="secondary"
         variant="contained"
-        onClick={CreateClick}
+        onClick={createClick}
       >
-        Create Skill
+        {t('Create Skill')}
       </Button>
     </>
   );
