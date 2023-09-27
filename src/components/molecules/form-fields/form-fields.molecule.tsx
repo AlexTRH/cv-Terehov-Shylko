@@ -1,72 +1,60 @@
 import {
-  FormControl,
-  InputLabel,
   Checkbox,
+  FormControl,
   FormControlLabel,
-  OutlinedInput
-} from '@mui/material';
-import { Control, Controller, ControllerRenderProps } from 'react-hook-form';
-import { FormInput } from '../../../components/dialogs/skills/skill-dialog.types';
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material'
+import { Control, Controller } from 'react-hook-form'
+import { FormInput } from '../../dialogs/skills/skill-dialog.types'
+import { FieldNames, Render } from './form-fields.interface'
+import { formFields } from './form-fields.data'
+
+const NameField: React.FC<Render> = ({ field }) => (
+  <FormControl>
+    <InputLabel htmlFor="name">Name</InputLabel>
+    <OutlinedInput id="name" label="Name" {...field} />
+  </FormControl>
+)
+
+const DescriptionField: React.FC<Render> = ({ field }) => (
+  <FormControl>
+    <InputLabel htmlFor="description">Description</InputLabel>
+    <OutlinedInput id="description" label="Description" {...field} />
+  </FormControl>
+)
+
+const TemplateField: React.FC<Render> = ({ field }) => (
+  <FormControl>
+    <FormControlLabel control={<Checkbox {...field} />} label="Template" />
+  </FormControl>
+)
 
 interface Props {
-  control: Control<FormInput, any>;
-}
-
-type FieldNames = 'name' | 'description' | 'template';
-
-interface Render {
-  field: ControllerRenderProps<FormInput, FieldNames>;
-}
-
-interface FormField {
-  name: FieldNames;
-  defaultValue?: string | boolean | undefined;
-  render: (renderParam: Render) => JSX.Element;
+  control: Control<FormInput, any>
 }
 
 const FormFields: React.FC<Props> = ({ control }) => {
-  const formFields: FormField[] = [
-    {
-      name: 'name',
-      defaultValue: '',
-      render: ({ field }: Render) => (
-        <FormControl>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <OutlinedInput id="name" label="Name" {...field} />
-        </FormControl>
-      )
-    },
-    {
-      name: 'description',
-      defaultValue: '',
-      render: ({ field }: Render) => (
-        <FormControl>
-          <InputLabel htmlFor="description">Description</InputLabel>
-          <OutlinedInput id="description" label="Description" {...field} />
-        </FormControl>
-      )
-    },
-    {
-      name: 'template',
-      defaultValue: false,
-      render: ({ field }: Render) => (
-        <FormControl>
-          <FormControlLabel
-            control={<Checkbox {...field} />}
-            label="Template"
-          />
-        </FormControl>
-      )
-    }
-  ];
-
   return (
     <>
       {formFields.map((field) => (
-        <Controller key={field.name} control={control} {...field} />
+        <Controller
+          key={field.name}
+          control={control}
+          name={field.name as FieldNames}
+          render={({ field }) => (
+            <div>
+              {field.name === 'name' && <NameField field={field} />}
+              {field.name === 'description' && (
+                <DescriptionField field={field} />
+              )}
+              {field.name === 'template' && <TemplateField field={field} />}
+            </div>
+          )}
+        />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default FormFields;
+export default FormFields
