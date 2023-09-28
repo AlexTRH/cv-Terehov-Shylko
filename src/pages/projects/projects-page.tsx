@@ -6,32 +6,27 @@ import { ProjectsTableHead } from '../../components/organisms/projects-table-hea
 import { ProjectsTableRow } from '../../components/organisms/projects-table-row/projects-table-row.organism'
 import { getProjectsQuery } from '../../graphql/projects/projects.queries'
 import { IProject } from '../../interfaces/project.interface'
+import { ProjectsResult } from './projects-page.type'
 
 const Table = createTable<IProject>()
-
-type ProjectsResult = {
-  projects: IProject[]
-}
 
 const ProjectsPage = () => {
   const { data, loading, error } = useQuery<ProjectsResult>(getProjectsQuery)
 
+  if (loading) {
+    return <PageLoader />
+  }
+
   return (
-    <>
-      {loading ? (
-        <PageLoader />
-      ) : (
-        <Table
-          items={data?.projects || []}
-          TableToolComponent={ProjectsTableConfirm}
-          TableHeadComponent={ProjectsTableHead}
-          TableRowComponent={ProjectsTableRow}
-          searchBy={['name']}
-          defaultSortBy="name"
-          loading={loading}
-        />
-      )}
-    </>
+    <Table
+      items={data?.projects || []}
+      TableToolComponent={ProjectsTableConfirm}
+      TableHeadComponent={ProjectsTableHead}
+      TableRowComponent={ProjectsTableRow}
+      searchBy={['name']}
+      defaultSortBy="name"
+      loading={loading}
+    />
   )
 }
 
