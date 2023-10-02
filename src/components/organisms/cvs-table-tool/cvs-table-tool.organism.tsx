@@ -1,23 +1,23 @@
-import { Button } from '@mui/material';
-import { useState } from 'react';
+import { Button } from '@mui/material'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import SearchInput from '@components/Table/SearchInput';
-import CreateCvForm from './CreateCvForm';
+import { SearchInput } from '../../molecules/search-input'
+import CreateCvForm from '../../dialogs/cvs/CreateCvForm'
 
 export const CVsTableTool = () => {
-  const [formOpened, setFormOpened] = useState(false);
+  const [formOpened, setFormOpened] = useState(false)
   const { t } = useTranslation()
   const createCvClick = () => {
-    setFormOpened(true);
-  };
+    setFormOpened(true)
+  }
 
   const closeForm = () => {
-    setFormOpened(false);
-  };
+    setFormOpened(false)
+  }
 
-  const createUser = async () => {
-    closeForm();
-  };
+  const createUser = () => {
+    closeForm()
+  }
   return (
     <>
       <CreateCvForm
@@ -30,5 +30,5 @@ export const CVsTableTool = () => {
         {t('Create CV')}
       </Button>
     </>
-  );
-};
+  )
+}
