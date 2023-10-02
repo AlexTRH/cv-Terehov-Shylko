@@ -29,7 +29,7 @@ export const ProjectsTableConfirm = () => {
         variant="contained"
         onClick={CreateClick}
       >
-        Create Skill
+        Create Project
       </Button>
     </>
   );
