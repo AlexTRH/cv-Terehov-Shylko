@@ -1,72 +1,31 @@
-import {
-  FormControl,
-  InputLabel,
-  Checkbox,
-  FormControlLabel,
-  OutlinedInput
-} from '@mui/material';
-import { Control, Controller, ControllerRenderProps } from 'react-hook-form';
-import { FormInput } from '../../../components/dialogs/skills/skill-dialog.types';
+import React from 'react'
+import { Control, Controller } from 'react-hook-form'
+import { FormInput } from '../../dialogs/skills/skill-dialog.types'
+import { FieldNames, Render } from './form-fields.interface'
+import { formFields } from './form-fields.data'
+import FormField from './form-field.molecule'
 
 interface Props {
-  control: Control<FormInput, any>;
-}
-
-type FieldNames = 'name' | 'description' | 'template';
-
-interface Render {
-  field: ControllerRenderProps<FormInput, FieldNames>;
-}
-
-interface FormField {
-  name: FieldNames;
-  defaultValue?: string | boolean | undefined;
-  render: (renderParam: Render) => JSX.Element;
+  control: Control<FormInput, any>
 }
 
 const FormFields: React.FC<Props> = ({ control }) => {
-  const formFields: FormField[] = [
-    {
-      name: 'name',
-      defaultValue: '',
-      render: ({ field }: Render) => (
-        <FormControl>
-          <InputLabel htmlFor="name">Name</InputLabel>
-          <OutlinedInput id="name" label="Name" {...field} />
-        </FormControl>
-      )
-    },
-    {
-      name: 'description',
-      defaultValue: '',
-      render: ({ field }: Render) => (
-        <FormControl>
-          <InputLabel htmlFor="description">Description</InputLabel>
-          <OutlinedInput id="description" label="Description" {...field} />
-        </FormControl>
-      )
-    },
-    {
-      name: 'template',
-      defaultValue: false,
-      render: ({ field }: Render) => (
-        <FormControl>
-          <FormControlLabel
-            control={<Checkbox {...field} />}
-            label="Template"
-          />
-        </FormControl>
-      )
-    }
-  ];
-
   return (
     <>
       {formFields.map((field) => (
-        <Controller key={field.name} control={control} {...field} />
+        <Controller
+          key={field.name}
+          control={control}
+          name={field.name as FieldNames}
+          render={({ field }) => (
+            <div key={field.name}>
+              <FormField label={field.name} {...field} />
+            </div>
+          )}
+        />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default FormFields;
+export default FormFields
