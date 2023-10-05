@@ -13,6 +13,7 @@ import { EmployeeCvs } from '../pages/employee-cvs'
 import { EmployeeSkills } from '../pages/employee-skills'
 import { Languages } from '../pages/languages'
 import { CVsPage } from '../pages/cvs'
+import { DepartmentsPage } from '../pages/departments'
 
 const AppRouter = () => {
   const isAuth = useReactiveVar(authService.access_token$)
@@ -48,6 +49,10 @@ const AppRouter = () => {
             />
             <Route path={RoutesPath.Languages} element={<Languages />} />
             <Route path={RoutesPath.Cvs} element={<CVsPage />} />
+            <Route
+              path={RoutesPath.Departments}
+              element={<DepartmentsPage />}
+            />
           </Route>
         </Routes>
       </Suspense>
