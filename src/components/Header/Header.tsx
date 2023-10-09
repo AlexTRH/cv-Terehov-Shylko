@@ -4,26 +4,21 @@ import { authService } from '../../graphql/auth/auth.service'
 import { AppBar, Toolbar, Tabs, Tab } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from 'react-router-dom'
-import {
-  StyledBox,
-  StyledIconButton,
-  StyledToolbar,
-} from '../../components/header/header.styles'
+import { StyledBox, StyledIconButton, StyledToolbar } from './header.styles'
 import { RoutesPath } from '../../constants/routes.constants'
-import { AuthTabsName } from '../../constants/tabs.constants'
 import SideMenu from '../organisms/side-menu/side-menu.organism'
 import { UserMenu } from '../user-menu/user-menu'
 
 const Header = () => {
   const isAuth = useReactiveVar(authService.access_token$)
-  const [value, setValue] = useState(AuthTabsName.Login)
+  const [value, setValue] = useState('LOGIN')
   const [isOpen, setIsOpen] = useState(false)
 
- const handleChange = (event: React.SyntheticEvent, newValue: AuthTabsName) => {
-  startTransition(() => {
-    return setValue(newValue)
-  })
-}
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    startTransition(() => {
+      setValue(newValue)
+    })
+  }
 
   const openMenu = () => {
     setIsOpen(true)
@@ -62,14 +57,14 @@ const Header = () => {
               variant="fullWidth"
             >
               <Tab
-                value={AuthTabsName.Login}
-                label={AuthTabsName.Login}
+                value="LOGIN"
+                label="LOGIN"
                 component={Link}
                 to={RoutesPath.Login}
               ></Tab>
               <Tab
-                value={AuthTabsName.Signup}
-                label={AuthTabsName.Signup}
+                value="SIGNUP"
+                label="SIGNUP"
                 component={Link}
                 to={RoutesPath.Signup}
               ></Tab>

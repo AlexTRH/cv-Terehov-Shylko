@@ -1,4 +1,4 @@
-import { ChangeEvent, DragEvent, useCallback, useMemo } from 'react'
+import { ChangeEvent, DragEvent, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
@@ -19,46 +19,37 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
 
   const profileId = useMemo(() => user.profile.id, [user.profile.id])
 
-  const handleUpload = useCallback(
-    async (file: File) => {
-      const avatar = await fileToBase64(file)
-      const { data } = await uploadAvatar({
-        variables: { id: profileId, avatar },
-      })
-      if (data) {
-        authService.updateAvatar(data.uploadAvatar)
-      }
-    },
-    [uploadAvatar, profileId]
-  )
+  const handleUpload = async (file: File) => {
+    const avatar = await fileToBase64(file)
+    const { data } = await uploadAvatar({
+      variables: { id: profileId, avatar },
+    })
+    if (data) {
+      authService.updateAvatar(data.uploadAvatar)
+    }
+  }
 
-  const handleDelete = useCallback(() => {
+  const handleDelete = () => {
     deleteAvatar({ variables: { id: profileId } }).then(() => {
       authService.updateAvatar('')
     })
-  }, [deleteAvatar, profileId])
+  }
 
-  const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const { files } = event.target
-      if (files) {
-        handleUpload(files[0])
-      }
-    },
-    [handleUpload]
-  )
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target
+    if (files) {
+      handleUpload(files[0])
+    }
+  }
 
-  const handleDragOver = useCallback((event: DragEvent) => {
+  const handleDragOver = (event: DragEvent) => {
     event.preventDefault()
-  }, [])
+  }
 
-  const handleDrop = useCallback(
-    (event: DragEvent) => {
-      event.preventDefault()
-      handleUpload(event.dataTransfer.files[0])
-    },
-    [handleUpload]
-  )
+  const handleDrop = (event: DragEvent) => {
+    event.preventDefault()
+    handleUpload(event.dataTransfer.files[0])
+  }
 
   return (
     <Styled.AvatarUpload>
