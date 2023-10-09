@@ -1,0 +1,100 @@
+import { ChangeEvent, DragEvent, useCallback, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Badge, IconButton, Typography } from '@mui/material'
+import { Close, FileUploadOutlined } from '@mui/icons-material'
+import { authService } from '../../../graphql/auth/auth.service'
+import {
+  useAvatarUpload,
+  useAvatarDelete,
+} from '../../../hooks/use-avatar.hook'
+import { fileToBase64 } from '../../../helpers/file-to-base64.helper'
+import { AvatarUploadProps } from './avatar-upload.types'
+import * as Styled from './avatar-upload.styles'
+
+const { t } = useTranslation()
+
+export const AvatarUpload = ({ user }: AvatarUploadProps) => {
+  const [uploadAvatar, isLoading] = useAvatarUpload()
+  const [deleteAvatar, isDeleting] = useAvatarDelete()
+
+  const profileId = useMemo(() => user.profile.id, [user.profile.id])
+
+  const handleUpload = useCallback(
+    async (file: File) => {
+      const avatar = await fileToBase64(file)
+      const { data } = await uploadAvatar({
+        variables: { id: profileId, avatar },
+      })
+      if (data) {
+        authService.updateAvatar(data.uploadAvatar)
+      }
+    },
+    [uploadAvatar, profileId]
+  )
+
+  const handleDelete = useCallback(() => {
+    deleteAvatar({ variables: { id: profileId } }).then(() => {
+      authService.updateAvatar('')
+    })
+  }, [deleteAvatar, profileId])
+
+  const handleChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const { files } = event.target
+      if (files) {
+        handleUpload(files[0])
+      }
+    },
+    [handleUpload]
+  )
+
+  const handleDragOver = useCallback((event: DragEvent) => {
+    event.preventDefault()
+  }, [])
+
+  const handleDrop = useCallback(
+    (event: DragEvent) => {
+      event.preventDefault()
+      handleUpload(event.dataTransfer.files[0])
+    },
+    [handleUpload]
+  )
+
+  return (
+    <Styled.AvatarUpload>
+      <Badge
+        badgeContent={
+          user.profile.avatar && (
+            <IconButton disabled={isDeleting} onClick={handleDelete}>
+              <Close />
+            </IconButton>
+          )
+        }
+      >
+        <Styled.Avatar src={user.profile.avatar}>
+          {user.profile.full_name
+            ? `${user.profile.first_name?.[0] || ''}${
+                user.profile.last_name?.[0] || ''
+              }`
+            : user.email[0]}
+        </Styled.Avatar>
+      </Badge>
+      <Styled.Label onDragOver={handleDragOver} onDrop={handleDrop}>
+        <Typography variant="h6">
+          <FileUploadOutlined fontSize="large" sx={{ mr: 2 }} />
+          {t('Upload avatar image')}
+        </Typography>
+        <Typography variant="subtitle1" color="GrayText">
+          {t('png, jpg or gif no more than 0.5MB')}
+        </Typography>
+        <Styled.Input
+          type="file"
+          accept=".png, .jpg, .jpeg, .gif"
+          size={500}
+          disabled={isLoading}
+          onChange={handleChange}
+        />
+      </Styled.Label>
+    </Styled.AvatarUpload>
+  )
+}
