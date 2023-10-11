@@ -1,6 +1,6 @@
+import i18n, { use } from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import HttpApi from 'i18next-http-backend'
-import i18n, { use } from 'i18next'
 import { languageService } from '../../graphql/languages/languages.service'
 
 use(initReactI18next).init({

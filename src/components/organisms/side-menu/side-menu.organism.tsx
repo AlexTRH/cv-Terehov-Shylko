@@ -1,17 +1,35 @@
-import { FC, memo } from 'react'
+import { FC, memo, useCallback, useEffect, useState } from 'react'
 import { Divider, Drawer, IconButton } from '@mui/material'
-import { Close } from '@mui/icons-material'
+import { Close, Menu } from '@mui/icons-material'
 import { SideMenuItem } from '../../molecules/side-menu-item'
 import { LIST_ITEMS } from './side-menu.constants'
 import * as Styled from './side-menu.styles'
-import { SideMenuProps } from './side-menu.types'
+import { useLocation } from 'react-router-dom'
 
-const SideMenu: FC<SideMenuProps> = ({ open, onClose }) => {
+const SideMenu = () => {
+  const location = useLocation()
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = useCallback(() => {
+    setOpen(true)
+  }, [])
+
+  const handleClose = useCallback(() => {
+    setOpen(false)
+  }, [])
+
+  useEffect(() => {
+    handleClose()
+  }, [location, handleClose])
+
   return (
     <>
-      <Drawer anchor="left" open={open} keepMounted onClick={onClose}>
+      <IconButton color="primary" onClick={handleOpen}>
+        <Menu />
+      </IconButton>
+      <Drawer anchor="left" open={open} keepMounted onClose={handleClose}>
         <Styled.ToolBar>
-          <IconButton sx={{ ml: 'auto' }} color="primary" onClick={onClose}>
+          <IconButton sx={{ ml: 'auto' }} color="primary" onClick={handleClose}>
             <Close />
           </IconButton>
         </Styled.ToolBar>

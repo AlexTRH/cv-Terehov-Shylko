@@ -4,22 +4,26 @@ import { Button, Dialog, DialogContent, IconButton } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { authService } from '../../../graphql/auth/auth.service'
 import { createCv, getCVsQuery } from '../../../graphql/cvs/cvs.queries'
-import { User } from '../../../graphql/user/user.queries'
+import { getUserQuery } from '../../../graphql/users/users.queries'
 import { StyledBox, StyledDialogTitle } from './CreateCvForm.styles'
 import FormFields from './FormFields'
-import { CreateCvFormInput, CreateCvFormProps, UserAllResult } from './CreateCvForm.types'
+import {
+  CreateCvFormInput,
+  CreateCvFormProps,
+  UserAllResult,
+} from './CreateCvForm.types'
 
-
-const CreateCvForm: React.FC<CreateCvFormProps> = ({ close, confirm, opened }) => {
+const CreateCvForm: React.FC<CreateCvFormProps> = ({
+  close,
+  confirm,
+  opened,
+}) => {
   const { control, handleSubmit, reset } = useForm<CreateCvFormInput>()
   const user = useReactiveVar(authService.user$)
 
-  const { data: userData } = useQuery<UserAllResult>(
-    User,
-    {
-      variables: { id: user?.id },
-    }
-  )
+  const { data: userData } = useQuery<UserAllResult>(getUserQuery, {
+    variables: { id: user?.id },
+  })
 
   const [createCV, { loading }] = useMutation(createCv, {
     refetchQueries: [{ query: getCVsQuery }],
