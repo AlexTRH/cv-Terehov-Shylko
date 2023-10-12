@@ -9,9 +9,12 @@ import EmployeesPage from '../pages/employees/index'
 import ProjectsPage from '../pages/projects/index'
 import Layout from '../components/templates/layout/layout.template';
 import SkillsPage from '../pages/skills/index'
+import Layout from '../components/templates/layout/layout.template'
+import { Profile } from '../pages/employee-profile/employee-profile.styles'
+
 
 const AppRouter = () => {
-   const isAuth = useReactiveVar(authService.access_token$);
+  const isAuth = useReactiveVar(authService.access_token$)
 
   return (
     <BrowserRouter>
@@ -19,15 +22,22 @@ const AppRouter = () => {
         <Routes>
           <Route path={RoutesPath.Initial} element={<Layout />}>
             {isAuth ? (
-              <Route index element={<Navigate to={RoutesPath.Main} replace />} />
+              <Route
+                index
+                element={<Navigate to={RoutesPath.Main} replace />}
+              />
             ) : (
-              <Route index element={<Navigate to={RoutesPath.Login} replace />} />
+              <Route
+                index
+                element={<Navigate to={RoutesPath.Login} replace />}
+              />
             )}
             <Route path={RoutesPath.Login} element={<LogInPage />} />
             <Route path={RoutesPath.Signup} element={<SignupPage />} />
             <Route path={RoutesPath.Main} element={<EmployeesPage />} />
             <Route path={RoutesPath.Projects} element={<ProjectsPage />} />
             <Route path={RoutesPath.Skills} element={<SkillsPage />} />
+            <Route path={RoutesPath.Employee_profile} element={<Profile />} />
           </Route>
         </Routes>
       </Suspense>
