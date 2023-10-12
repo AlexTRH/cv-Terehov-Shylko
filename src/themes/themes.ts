@@ -3,10 +3,10 @@ import { createTheme } from '@mui/material'
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#c63031',
+      main: '#ffffff',
     },
     secondary: {
-      main: '#767676',
+      main: '#ffffff',
     },
     error: {
       main: '#c63031',
@@ -50,7 +50,7 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: '#2e2e2e',
+          backgroundColor: '#0aa7f6',
           height: 64,
         },
       },

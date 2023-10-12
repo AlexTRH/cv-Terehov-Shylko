@@ -1,18 +1,19 @@
 export enum RoutesPath {
   Initial = '/',
   Other = '*',
-  Login = '/login',
-  Signup = '/signup',
-  Main = '/main',
+  Auth = '/auth',
+  Login = '/auth/login',
+  Signup = '/auth/signup',
+  Main = '/employees',
   Projects = '/projects',
   Cvs = '/cvs',
   Departments = '/departments',
   Positions = '/positions',
   Skills = '/skills',
   Languages = '/languages',
+  Employee_details = '/employees/:id',
   Employee_profile = '/employees/:id/profile',
   Employee_skills = '/employees/:id/skills',
   Employee_languages = '/employees/:id/languages',
-  Employee_cvs = '/employees/:id/cvs'
+  Employee_cvs = '/employees/:id/cvs',
 }
-
