@@ -16,7 +16,7 @@ const EmployeeDetails = () => {
   const params = useParams()
   const { t } = useTranslation()
 
-  if (!params || !params.id) {
+  if (!params?.id) {
     return <div>Ошибка: ID не найден</div>
   }
 
