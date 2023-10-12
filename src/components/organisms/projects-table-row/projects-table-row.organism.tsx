@@ -13,8 +13,8 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
     refetchQueries: [{ query: getProjectsQuery }]
   })
 
-  const handleDelete = async () => {
-    await DeleteProject({
+  const handleDelete = () => {
+    DeleteProject({
       variables: { id: item.id }
     })
   }

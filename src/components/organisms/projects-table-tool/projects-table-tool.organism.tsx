@@ -8,7 +8,7 @@ export const ProjectsTableConfirm = () => {
   const [formOpened, setFormOpened] = useState(false);
    const { isAdmin } = useUser()
 
-  const CreateClick = () => {
+  const createClick = () => {
     setFormOpened(true);
   };
 
@@ -16,7 +16,7 @@ export const ProjectsTableConfirm = () => {
     setFormOpened(false);
   };
 
-  const create = async () => {
+  const create = () => {
     closeForm();
   };
   return (
@@ -27,7 +27,7 @@ export const ProjectsTableConfirm = () => {
         disabled={!isAdmin}
         color="secondary"
         variant="contained"
-        onClick={CreateClick}
+        onClick={createClick}
       >
         Create Project
       </Button>
