@@ -6,15 +6,10 @@ import { createSortLabel } from '../../atoms/sort-label'
 
 export const DepartmentsTableHead = () => {
   const { t } = useTranslation()
-  const tableHeadData = [{ key: 'name', label: t('Name') }]
 
   return (
     <TableRow>
-      {tableHeadData.map((item) => (
-        <TableCell key={item.key}>
-          {createSortLabel<IDepartment>(item.key, item.label)}
-        </TableCell>
-      ))}
+      <TableCell>{createSortLabel<IDepartment>('name', t('Name'))}</TableCell>
       <TableCell />
     </TableRow>
   )

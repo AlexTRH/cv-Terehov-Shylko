@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client'
-import { PageLoader } from '../../components/atoms/page-loader/page-loader.atom'
+import { PageLoader } from '../../components/atoms/page-loader'
 import { createTable } from '../../components/templates/table'
-import { DepartmentsTableTool } from '../../components/organisms/departments-table-tool/departments-table-tool.organism'
-import { DepartmentsTableHead } from '../../components/organisms/departments-table-head/departments-table-head.organism'
-import { DepartmentsTableRow } from '../../components/organisms/departments-table-row/departments-table-row.organism'
+import { DepartmentsTableTool } from '../../components/organisms/departments-table-tool'
+import { DepartmentsTableHead } from '../../components/organisms/departments-table-head'
+import { DepartmentsTableRow } from '../../components/organisms/departments-table-row'
 import { getDepartmentsQuery } from '../../graphql/departments/departments.queries'
 import { IDepartment } from '../../interfaces/department.interface'
 

@@ -7,22 +7,22 @@ import { IUser } from '../../../interfaces/user.interface'
 const UsersTableHead = () => {
   const { t } = useTranslation()
 
-  const tableHeadData = [
-    { key: 'profile.first_name', label: 'First Name' },
-    { key: 'profile.last_name', label: 'Last Name' },
-    { key: 'email', label: 'Email' },
-    { key: 'department_name', label: 'Department' },
-    { key: 'position_name', label: 'Position' },
-  ]
-
   return (
     <TableRow>
       <TableCell />
-      {tableHeadData.map((item) => (
-        <TableCell key={item.key}>
-          {createSortLabel<IUser>(item.key, t(item.label))}
-        </TableCell>
-      ))}
+      <TableCell>
+        {createSortLabel<IUser>('profile.first_name', t('First Name'))}
+      </TableCell>
+      <TableCell>
+        {createSortLabel<IUser>('profile.last_name', t('Last Name'))}
+      </TableCell>
+      <TableCell>{createSortLabel<IUser>('email', t('Email'))}</TableCell>
+      <TableCell>
+        {createSortLabel<IUser>('department_name', t('Department'))}
+      </TableCell>
+      <TableCell>
+        {createSortLabel<IUser>('position_name', t('Position'))}
+      </TableCell>
       <TableCell />
     </TableRow>
   )

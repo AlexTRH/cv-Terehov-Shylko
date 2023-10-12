@@ -6,19 +6,14 @@ import { createSortLabel } from '../../atoms/sort-label'
 
 export const LanguagesTableHead = () => {
   const { t } = useTranslation()
-  const tableHeadData = [
-    { key: 'name', label: t('Name') },
-    { key: 'native_name', label: t('Native Name') },
-    { key: 'iso2', label: 'ISO2' },
-  ]
 
   return (
     <TableRow>
-      {tableHeadData.map((item) => (
-        <TableCell key={item.key}>
-          {createSortLabel<ILanguage>(item.key, item.label)}
-        </TableCell>
-      ))}
+      <TableCell>{createSortLabel<ILanguage>('name', t('Name'))}</TableCell>
+      <TableCell>
+        {createSortLabel<ILanguage>('native_name', t('Native Name'))}
+      </TableCell>
+      <TableCell>{createSortLabel<ILanguage>('iso2', 'ISO2')}</TableCell>
       <TableCell />
     </TableRow>
   )

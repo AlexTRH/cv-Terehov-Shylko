@@ -6,15 +6,13 @@ import { ICV } from '../../../interfaces/cv.interface'
 
 export const CVsTableHead = () => {
   const { t } = useTranslation()
-  const sortLabel = (key: string, label: string) =>
-    createSortLabel<ICV>(key, label)
 
   return (
     <TableRow>
       <TableCell>{t('Template')}</TableCell>
-      <TableCell>{sortLabel('name', t('Name'))}</TableCell>
+      <TableCell>{createSortLabel<ICV>('name', t('Name'))}</TableCell>
       <TableCell>{t('Description')}</TableCell>
-      <TableCell>{sortLabel('user.email', t('Employee'))}</TableCell>
+      <TableCell>{createSortLabel<ICV>('user.email', t('Employee'))}</TableCell>
       <TableCell />
     </TableRow>
   )
