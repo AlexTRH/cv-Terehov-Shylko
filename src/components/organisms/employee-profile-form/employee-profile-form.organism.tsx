@@ -11,22 +11,24 @@ import {
 } from './employee-profile-form.types'
 import * as Styled from './employee-profile-form.styles'
 import { setDefaultUserValues } from '../../../helpers/user.helper'
+import { IUser } from '../../../interfaces/user.interface'
 
 export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
   const [updateUser, loading] = useUserUpdate()
   const { user$, isAdmin } = useUser()
   const { t } = useTranslation()
-  const userRoleId = user$?.id
+
+  const setDefaultValues = (user: IUser) => ({
+    first_name: user.profile.first_name || '',
+    last_name: user.profile.last_name || '',
+    department: user.department?.id || '',
+    position: user.position?.id || '',
+  })
 
   const methods = useForm<EmployeeProfileFormValues>({
-    defaultValues: setDefaultUserValues(user),
+    defaultValues: setDefaultValues(user),
   })
-  const {
-    formState: { isDirty },
-    register,
-    handleSubmit,
-    reset,
-  } = methods
+  const { formState, register, handleSubmit, reset } = methods
 
   const onSubmit = (values: EmployeeProfileFormValues) => {
     updateUser({
@@ -42,7 +44,7 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
           role: user.role,
         },
       },
-    }).then(({ data }) => data && reset(setDefaultUserValues(data.updateUser)))
+    }).then(({ data }) => data && reset(setDefaultValues(data.updateUser)))
   }
 
   return (
@@ -52,11 +54,11 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
         <TextField {...register('last_name')} label={t('Last Name')} />
         <DepartmentSelect name="department" />
         <PositionSelect name="position" />
-        {(isAdmin || userRoleId === user.id) && (
+        {(isAdmin || user$?.id === user.id) && (
           <Button
             type="submit"
             variant="contained"
-            disabled={!isDirty || loading}
+            disabled={!formState.isDirty || loading}
             sx={{ gridColumn: 2 }}
           >
             {t('Update')}

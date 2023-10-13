@@ -1,36 +1,22 @@
-import { useState } from 'react';
 import { Button } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import { SearchInput } from '../../molecules/search-input'
-import CreateProjectForm from '../../dialogs/projects/projects-form';
 import { useUser } from '../../../hooks/use-user.hook'
+import { useCreateProjectDialog } from '../../dialogs/create-project'
 
-export const ProjectsTableConfirm = () => {
-  const [formOpened, setFormOpened] = useState(false);
-   const { isAdmin } = useUser()
+export const ProjectsTableTool = () => {
+  const { isAdmin } = useUser()
+  const { t } = useTranslation()
+  const [openCreateProjectDialog] = useCreateProjectDialog()
 
-  const CreateClick = () => {
-    setFormOpened(true);
-  };
-
-  const closeForm = () => {
-    setFormOpened(false);
-  };
-
-  const create = async () => {
-    closeForm();
-  };
   return (
     <>
-      <CreateProjectForm opened={formOpened} close={closeForm} confirm={create} />
       <SearchInput />
-      <Button
-        disabled={!isAdmin}
-        color="secondary"
-        variant="contained"
-        onClick={CreateClick}
-      >
-        Create Project
-      </Button>
+      {isAdmin && (
+        <Button variant="outlined" onClick={openCreateProjectDialog}>
+          {t('Create project')}
+        </Button>
+      )}
     </>
-  );
-};
+  )
+}

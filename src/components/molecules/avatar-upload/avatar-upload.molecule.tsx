@@ -11,54 +11,39 @@ import { fileToBase64 } from '../../../helpers/file-to-base64.helper'
 import { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
 
-const { t } = useTranslation()
-
 export const AvatarUpload = ({ user }: AvatarUploadProps) => {
+  const { t } = useTranslation()
   const [uploadAvatar, isLoading] = useAvatarUpload()
   const [deleteAvatar, isDeleting] = useAvatarDelete()
+  const profileId = user.profile.id
 
-  const profileId = useMemo(() => user.profile.id, [user.profile.id])
+  const handleUpload = (file: File) => {
+    fileToBase64(file)
+      .then((avatar) => uploadAvatar({ variables: { id: profileId, avatar } }))
+      .then(({ data }) => data && authService.updateAvatar(data.uploadAvatar))
+  }
 
-  const handleUpload = useCallback(
-    async (file: File) => {
-      const avatar = await fileToBase64(file)
-      const { data } = await uploadAvatar({
-        variables: { id: profileId, avatar },
-      })
-      if (data) {
-        authService.updateAvatar(data.uploadAvatar)
-      }
-    },
-    [uploadAvatar, profileId]
-  )
-
-  const handleDelete = useCallback(() => {
-    deleteAvatar({ variables: { id: profileId } }).then(() => {
+  const handleDelete = () => {
+    deleteAvatar({ variables: { id: profileId } }).then(() =>
       authService.updateAvatar('')
-    })
-  }, [deleteAvatar, profileId])
+    )
+  }
 
-  const handleChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const { files } = event.target
-      if (files) {
-        handleUpload(files[0])
-      }
-    },
-    [handleUpload]
-  )
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target
+    if (files) {
+      handleUpload(files[0])
+    }
+  }
 
-  const handleDragOver = useCallback((event: DragEvent) => {
+  const handleDragOver = (event: DragEvent) => {
     event.preventDefault()
-  }, [])
+  }
 
-  const handleDrop = useCallback(
-    (event: DragEvent) => {
-      event.preventDefault()
-      handleUpload(event.dataTransfer.files[0])
-    },
-    [handleUpload]
-  )
+  const handleDrop = (event: DragEvent) => {
+    event.preventDefault()
+    handleUpload(event.dataTransfer.files[0])
+  }
 
   return (
     <Styled.AvatarUpload>
@@ -73,9 +58,9 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
       >
         <Styled.Avatar src={user.profile.avatar}>
           {user.profile.full_name
-            ? `${user.profile.first_name?.[0] || ''}${
-                user.profile.last_name?.[0] || ''
-              }`
+            ? user.profile.first_name?.[0] ||
+              '' + user.profile.last_name?.[0] ||
+              ''
             : user.email[0]}
         </Styled.Avatar>
       </Badge>

@@ -13,24 +13,17 @@ import { RoutesPath } from '../../constants/routes.constants'
 
 const EmployeeDetails = () => {
   const location = useLocation()
-  const params = useParams()
+  const { id } = useParams()
+  const path = `/employees/${id}`
   const { t } = useTranslation()
-
-  if (!params?.id) {
-    return <div>Ошибка: ID не найден</div>
-  }
-
-  const id = params.id
-  const path = RoutesPath.Employee_profile.replace(':id', id)
 
   const { data } = useQuery<UserResult>(getUserFullNameQuery, {
     variables: { id },
   })
-
   useBreadcrumbs({
-    [path]: {
+    [`employees/${id}`]: {
       text: data?.user.profile.full_name || data?.user.email,
-      to: `${path}/profile`,
+      to: `employees/${id}/profile`,
       color: 'primary',
       Icon: PersonOutline,
     },
@@ -43,25 +36,25 @@ const EmployeeDetails = () => {
           value={`${path}/profile`}
           label={t('Profile')}
           component={NavLink}
-          to={`${path}/profile`}
+          to="profile"
         />
         <Tab
           value={`${path}/skills`}
           label={t('skills')}
           component={NavLink}
-          to={`${path}/skills`}
+          to="skills"
         />
         <Tab
           value={`${path}/languages`}
           label={t('languages')}
           component={NavLink}
-          to={`${path}/languages`}
+          to="languages"
         />
         <Tab
           value={`${path}/cvs`}
           label={t('cvs')}
           component={NavLink}
-          to={`${path}/cvs`}
+          to="cvs"
         />
       </Styled.Tabs>
       <Styled.Details>

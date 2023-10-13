@@ -1,34 +1,42 @@
-import { useMutation } from '@apollo/client'
-import { MenuItem, TableCell, TableRow } from '@mui/material'
-import { ActionsMenu }from '../../atoms/actions-menu'
+import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
+import { ActionsMenu } from '../../atoms/actions-menu'
 import { TableRowProps } from '../../templates/table/table.types'
-import { getDeleteProjectMutation, getProjectsQuery } from '../../../graphql/projects/projects.queries'
 import { IProject } from '../../../interfaces/project.interface'
-import { useUser } from '../../../hooks/use-user.hook'
+import { useTranslation } from 'react-i18next'
+import { useProjectDelete } from '../../../hooks/use-project.hook'
+import { useConfirmDialog } from '../../dialogs/confirm'
 
 export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
-  const { isAdmin } = useUser()
+  const { t } = useTranslation()
+  const [deleteProject] = useProjectDelete(item)
+  const [openConfirmDialog] = useConfirmDialog()
 
-  const [DeleteProject] = useMutation<{ affected: number }>(getDeleteProjectMutation, {
-    refetchQueries: [{ query: getProjectsQuery }]
-  })
-
-  const handleDelete = async () => {
-    await DeleteProject({
-      variables: { id: item.id }
+  const handleDelete = () => {
+    openConfirmDialog({
+      dialogTitle: 'Delete project',
+      dialogContent: (
+        <Typography>
+          {t('Are you sure you want to delete project')} <b>{item.name}</b>?
+        </Typography>
+      ),
+      confirmCallback: () => deleteProject({ variables: { id: item.id } }),
     })
   }
 
   return (
-      <TableRow>
-        <TableCell>{item.name}</TableCell>
-        <TableCell sx={{ textAlign: 'right' }}>
-          <ActionsMenu>
-            <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-              Delete
-            </MenuItem>
-          </ActionsMenu>
-        </TableCell>
-      </TableRow>
+    <TableRow>
+      <TableCell>{item.name}</TableCell>
+      <TableCell>{item.internal_name}</TableCell>
+      <TableCell>{item.domain}</TableCell>
+      <TableCell>{item.start_date}</TableCell>
+      <TableCell>{item.end_date || t('Till now')}</TableCell>
+      <TableCell>{item.team_size}</TableCell>
+      <TableCell>
+        <ActionsMenu>
+          <MenuItem disabled>{t('Project')}</MenuItem>
+          <MenuItem onClick={handleDelete}>{t('Delete project')}</MenuItem>
+        </ActionsMenu>
+      </TableCell>
+    </TableRow>
   )
 }
