@@ -15,12 +15,12 @@ const EmployeeDetails = () => {
   const location = useLocation()
   const params = useParams()
   const { t } = useTranslation()
+  const id = params?.id
 
-  if (!params?.id) {
+  if (!id) {
     return <div>Ошибка: ID не найден</div>
   }
 
-  const id = params.id
   const path = RoutesPath.Employee_profile.replace(':id', id)
 
   const { data } = useQuery<UserResult>(getUserFullNameQuery, {

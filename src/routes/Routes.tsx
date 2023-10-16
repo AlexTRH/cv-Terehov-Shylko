@@ -8,7 +8,7 @@ import SignupPage from '../pages/auth/signup-page/index'
 import EmployeesPage from '../pages/employees/index'
 import SkillsPage from '../pages/skills/index'
 import Layout from '../components/templates/layout/layout.template'
-import { Profile } from '../pages/employee-profile/employee-profile.styles'
+import { ProfilePage } from '../pages/employee-profile/employee-profile.styles'
 
 const AppRouter = () => {
   const isAuth = useReactiveVar(authService.access_token$)
@@ -33,7 +33,10 @@ const AppRouter = () => {
             <Route path={RoutesPath.Signup} element={<SignupPage />} />
             <Route path={RoutesPath.Main} element={<EmployeesPage />} />
             <Route path={RoutesPath.Skills} element={<SkillsPage />} />
-            <Route path={RoutesPath.Employee_profile} element={<Profile />} />
+            <Route
+              path={RoutesPath.Employee_profile}
+              element={<ProfilePage />}
+            />
           </Route>
         </Routes>
       </Suspense>
