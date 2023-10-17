@@ -22,7 +22,7 @@ export const SkillsTableRow = ({ item }: TableRowProps<ISkill>) => {
     setFormOpened(false)
   }
 
-  const create = async () => {
+  const create = () => {
     closeForm()
   }
 
