@@ -7,7 +7,6 @@ import LogInPage from '../pages/auth/login-page/index'
 import SignupPage from '../pages/auth/signup-page/index'
 import EmployeesPage from '../pages/employees/index'
 import ProjectsPage from '../pages/projects/index'
-import Layout from '../components/templates/layout/layout.template';
 import SkillsPage from '../pages/skills/index'
 import Layout from '../components/templates/layout/layout.template'
 import { Profile } from '../pages/employee-profile/employee-profile.styles'
