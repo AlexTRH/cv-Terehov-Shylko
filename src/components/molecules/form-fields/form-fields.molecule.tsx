@@ -5,11 +5,11 @@ import { FieldNames, Render } from './form-fields.interface'
 import { formFields } from './form-fields.data'
 import FormField from './form-field.molecule'
 
-interface Props {
+interface FormFieldsProps {
   control: Control<FormInput, any>
 }
 
-const FormFields: React.FC<Props> = ({ control }) => {
+const FormFields: React.FC<FormFieldsProps> = ({ control }) => {
   return (
     <>
       {formFields.map((field) => (
