@@ -18,7 +18,7 @@ export const SkillsTableConfirm = () => {
   const { isAdmin } = useUser()
   const { reset } = useForm<FormInput>()
 
-  const сreateClick = () => {
+  const createClick = () => {
     setFormOpened(true)
   }
 
@@ -60,7 +60,7 @@ export const SkillsTableConfirm = () => {
         disabled={!isAdmin}
         color="secondary"
         variant="contained"
-        onClick={сreateClick}
+        onClick={createClick}
       >
         {t('Create Skill')}
       </Button>
