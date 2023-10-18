@@ -14,7 +14,6 @@ import { useUser } from '../../../hooks/use-user.hook'
 
 export const SkillsTableConfirm = () => {
   const { t } = useTranslation()
-
   const [formOpened, setFormOpened] = useState(false)
   const { isAdmin } = useUser()
   const { reset } = useForm<FormInput>()
