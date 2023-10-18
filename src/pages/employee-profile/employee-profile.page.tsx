@@ -17,7 +17,6 @@ const EmployeeProfile = () => {
   })
 
   if (loading || !data) {
-    // TODO: add loader
     return null
   }
 

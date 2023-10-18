@@ -33,6 +33,7 @@ const AppRouter = () => {
             <Route path={RoutesPath.Signup} element={<SignupPage />} />
             <Route path={RoutesPath.Main} element={<EmployeesPage />} />
             <Route path={RoutesPath.Skills} element={<SkillsPage />} />
+
             <Route
               path={RoutesPath.Employee_profile}
               element={<ProfilePage />}
