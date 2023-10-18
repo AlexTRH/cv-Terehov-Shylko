@@ -8,11 +8,11 @@ const UsersTableHead = () => {
   const { t } = useTranslation()
 
   const tableHeadData = [
-    { key: 'profile.first_name', label: t('First Name') },
-    { key: 'profile.last_name', label: t('Last Name') },
-    { key: 'email', label: t('Email') },
-    { key: 'department_name', label: t('Department') },
-    { key: 'position_name', label: t('Position') },
+    { key: 'profile.first_name', label: 'First Name' },
+    { key: 'profile.last_name', label: 'Last Name' },
+    { key: 'email', label: 'Email' },
+    { key: 'department_name', label: 'Department' },
+    { key: 'position_name', label: 'Position' },
   ]
 
   return (
@@ -20,7 +20,7 @@ const UsersTableHead = () => {
       <TableCell />
       {tableHeadData.map((item) => (
         <TableCell key={item.key}>
-          {createSortLabel<IUser>(item.key, item.label)}
+          {createSortLabel<IUser>(item.key, t(item.label))}
         </TableCell>
       ))}
       <TableCell />
