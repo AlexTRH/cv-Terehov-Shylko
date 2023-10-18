@@ -10,7 +10,10 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
   const { isAdmin } = useUser()
 
   const [DeleteProject] = useMutation<{ affected: number }>(getDeleteProjectMutation, {
-    refetchQueries: [{ query: getProjectsQuery }]
+    refetchQueries: [{ query: getProjectsQuery }],
+    onError: (error) => {
+      console.error('An error occurred during the mutation:', error)
+    }
   })
 
   const handleDelete = () => {
