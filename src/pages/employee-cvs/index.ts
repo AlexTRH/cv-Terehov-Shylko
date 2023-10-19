@@ -1,5 +1,3 @@
 import { lazy } from 'react'
 
-export const EmployeeCvs = lazy(() =>
-  import(/* webpackChunkName: "employee-cvs" */ './employee-cvs.page')
-)
+export const EmployeeCvs = lazy(() => import('./employee-cvs.page'))

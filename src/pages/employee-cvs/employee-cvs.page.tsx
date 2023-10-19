@@ -11,15 +11,19 @@ const EmployeeCvs = () => {
     variables: { id },
   })
 
-  if (!data || loading) {
+  if (loading) {
     return <CircularProgress />
   }
 
+  const cvs = data?.user?.cvs || []
+
   return (
     <div>
-      {data.user.cvs.map((cv) => (
-        <div>{cv.name}</div>
-      ))}
+      {cvs.length === 0 ? (
+        <p>No CVs available.</p>
+      ) : (
+        cvs.map((cv) => <div key={cv.name}>{cv.name}</div>)
+      )}
     </div>
   )
 }
