@@ -6,10 +6,16 @@ import { RoutesPath } from '../constants/routes.constants'
 import LogInPage from '../pages/auth/login-page/index'
 import SignupPage from '../pages/auth/signup-page/index'
 import EmployeesPage from '../pages/employees/index'
+import ProjectsPage from '../pages/projects/index'
+import SkillsPage from '../pages/skills/index'
 import Layout from '../components/templates/layout/layout.template'
+
 import { EmployeeProfile } from '../pages/employee-profile'
 import { EmployeeDetails } from '../pages/employee-details'
 import { EmployeeCvs } from '../pages/employee-cvs'
+
+import { ProfilePage } from '../pages/employee-profile/employee-profile.styles'
+
 
 const AppRouter = () => {
   const isAuth = useReactiveVar(authService.access_token$)
@@ -33,12 +39,16 @@ const AppRouter = () => {
             <Route path={RoutesPath.Login} element={<LogInPage />} />
             <Route path={RoutesPath.Signup} element={<SignupPage />} />
             <Route path={RoutesPath.Main} element={<EmployeesPage />} />
+            <Route path={RoutesPath.Projects} element={<ProjectsPage />} />
+            <Route path={RoutesPath.Skills} element={<SkillsPage />} />
+
             <Route
               path={RoutesPath.Employee_profile}
-              element={<EmployeeProfile />}
+              element={<ProfilePage />}
             />
             <Route path=":id" element={<EmployeeDetails />} />
             <Route path={RoutesPath.Cvs} element={<EmployeeCvs />} />
+
           </Route>
         </Routes>
       </Suspense>

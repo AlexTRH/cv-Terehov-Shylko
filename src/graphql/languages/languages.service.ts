@@ -1,5 +1,5 @@
-import i18n from 'configuration/i18n'
-import { StorageKeys } from 'constants/storage.constants'
+import i18n from '../../configuration/i18n'
+import { StorageKeys } from '../../constants/storage.constants'
 import { ILanguageService } from './languages.types'
 
 class LanguageService implements ILanguageService {
