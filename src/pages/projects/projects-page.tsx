@@ -6,7 +6,7 @@ import { ProjectsTableRow } from '../../components/organisms/projects-table-row/
 import { getProjectsQuery } from '../../graphql/projects/projects.queries'
 import { IProject } from '../../interfaces/project.interface'
 import { ProjectsResult } from './projects-page.type'
-import Preloader from 'components/atoms/preloader/preloader.atom'
+import Preloader from '../../components/atoms/preloader/preloader.atom'
 
 const Table = createTable<IProject>()
 
