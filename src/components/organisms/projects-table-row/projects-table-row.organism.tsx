@@ -16,6 +16,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
 
   const [errorMessage, setErrorMessage] = useState(false)
 
+
   const [DeleteProject] = useMutation<{ affected: number }>(
     getDeleteProjectMutation,
     {
@@ -27,6 +28,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
     }
   )
 
+
   const handleDelete = () => {
     DeleteProject({
       variables: { id: item.id },
@@ -34,6 +36,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
   }
 
   return (
+
     <>
       {errorMessage && <Notifications />}
       <TableRow>
@@ -47,5 +50,6 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
         </TableCell>
       </TableRow>
     </>
+
   )
 }
