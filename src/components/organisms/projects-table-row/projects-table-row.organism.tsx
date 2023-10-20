@@ -33,7 +33,7 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
       <TableCell sx={{ textAlign: 'right' }}>
         {errorMessage && <Notifications message="Something went wrong" show={errorMessage} />}
         <ActionsMenu>
-          <MenuItem disabled={isAdmin} onClick={handleDelete}>
+          <MenuItem disabled={!isAdmin} onClick={handleDelete}>
             Delete
           </MenuItem>
         </ActionsMenu>
