@@ -19,16 +19,25 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "typeRoots": ["./src/@types", "./node_modules/@types"],
-    "baseUrl": "./src"
-//    "paths": {
-//      "@atoms/*": ["components/atoms/*"],
-//      "@molecules/*": ["components/molecules/*"],
-//      "@organisms/*": ["components/organisms/*"],
-//      "@templates/*": ["components/templates/*"],
-//      "@features/*": ["components/features/*"],
-//      "@dialogs/*": ["components/dialogs/*"],
-//      "@pages/*": ["components/pages/*"]
-//    }
+    "baseUrl": "./src",
+    "paths": {
+      "@atoms/*": ["components/atoms/*"],
+      "@molecules/*": ["components/molecules/*"],
+      "@organisms/*": ["components/organisms/*"],
+      "@templates/*": ["components/templates/*"],
+      "@features/*": ["components/features/*"],
+      "@dialogs/*": ["components/dialogs/*"],
+      "@pages/*": ["pages/*"],
+      "@configuration/*": ["configuration/*"],
+      "@constants/*": ["constants/*"],
+      "@graphql/*": ["graphql/*"],
+      "@helpers/*": ["helpers/*"],
+      "@hooks/*": ["hooks/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@routes/*": ["routes/*"],
+      "@themes/*": ["themes/*"]
+
+    }
   },
   "include": ["src"],
   "exclude": ["public", "node_modules"],
