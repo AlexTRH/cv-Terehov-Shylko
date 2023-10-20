@@ -8,7 +8,7 @@ import {
   WorkOutline,
 } from '@mui/icons-material'
 import { Divider } from '@mui/material'
-import { RoutesPath } from '../../../constants/routes.constants'
+import { RoutesPath } from '@constants/routes.constants'
 import { ListItem } from './ListItem.interface'
 
 export const LIST_ITEMS: ListItem[] = [

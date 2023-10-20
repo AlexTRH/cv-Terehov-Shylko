@@ -19,7 +19,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "typeRoots": ["./src/@types", "./node_modules/@types"],
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "paths": {
       "@atoms/*": ["components/atoms/*"],
       "@molecules/*": ["components/molecules/*"],

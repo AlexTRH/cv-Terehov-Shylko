@@ -1,4 +1,4 @@
-import { FormInput } from '../../dialogs/skills/skill-dialog.types'
+import { FormInput } from '@dialogs/skills/skill-dialog.types'
 
 export interface SkillsProps {
   opened: boolean

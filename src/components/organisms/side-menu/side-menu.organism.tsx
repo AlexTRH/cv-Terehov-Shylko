@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react'
 import { Divider, Drawer, IconButton } from '@mui/material'
 import { Close } from '@mui/icons-material'
-import { SideMenuItem } from '../../molecules/side-menu-item'
+import { SideMenuItem } from '@molecules/side-menu-item'
 import { LIST_ITEMS } from './side-menu.constants'
 import * as Styled from './side-menu.styles'
 import { SideMenuProps } from './side-menu.types'

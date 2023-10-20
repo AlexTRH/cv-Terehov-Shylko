@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react'
 import {
   BreadcrumbsContext,
   BreadcrumbsConfig,
-} from '../components/features/breadcrumbs-context'
+} from '@features/breadcrumbs-context'
 
 export const useBreadcrumbs = (config: BreadcrumbsConfig) => {
   const context = useContext(BreadcrumbsContext)

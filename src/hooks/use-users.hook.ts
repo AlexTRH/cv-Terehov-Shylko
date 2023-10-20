@@ -4,14 +4,14 @@ import {
   UpdateUserInput,
   UpdateUserResult,
   UsersResult,
-} from 'graphql/users/users.types'
-import { IUser } from 'interfaces/user.interface'
+} from '@graphql/users/users.types'
+import { IUser } from '@interfaces/user.interface'
 import {
   getCreateUserMutation,
   getDeleteUserMutation,
   getUpdateUserMutation,
   getUsersQuery,
-} from '../graphql/users/users.queries'
+} from '@graphql/users/users.queries'
 
 export const useUsers = (): [IUser[], boolean] => {
   const { data, loading } = useQuery<UsersResult>(getUsersQuery)

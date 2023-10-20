@@ -2,13 +2,17 @@ import { useMutation } from '@apollo/client'
 import { MenuItem, TableCell, TableRow } from '@mui/material'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { FormInput } from '../../dialogs/skills/skill-dialog.types'
-import { ActionsMenu }from '../../atoms/actions-menu'
-import { TableRowProps } from '../../templates/table/table.types'
-import { getDeleteSkillMutation, getSkillsQuery, getUpdateSkillMutation } from '../../../graphql/skills/skills.queries'
-import { ISkill } from '../../../interfaces/skill.interface'
-import { useUser } from '../../../hooks/use-user.hook'
-import SkillsTemplate from '../../dialogs/skills/skills-template'
+import { FormInput } from '@dialogs/skills/skill-dialog.types'
+import { ActionsMenu } from '@atoms/actions-menu'
+import { TableRowProps } from '@templates/table/table.types'
+import {
+  getDeleteSkillMutation,
+  getSkillsQuery,
+  getUpdateSkillMutation,
+} from '@graphql/skills/skills.queries'
+import { ISkill } from '@interfaces/skill.interface'
+import { useUser } from '@hooks/use-user.hook'
+import SkillsTemplate from '@dialogs/skills/skills-template'
 
 export const SkillsTableRow = ({ item }: TableRowProps<ISkill>) => {
   const { isAdmin } = useUser()
@@ -42,13 +46,16 @@ export const SkillsTableRow = ({ item }: TableRowProps<ISkill>) => {
 
     reset()
   }
-  const [deleteSkill] = useMutation<{ affected: number }>(getDeleteSkillMutation, {
-    refetchQueries: [{ query: getSkillsQuery }]
-  })
+  const [deleteSkill] = useMutation<{ affected: number }>(
+    getDeleteSkillMutation,
+    {
+      refetchQueries: [{ query: getSkillsQuery }],
+    }
+  )
 
   const handleDelete = async () => {
     await deleteSkill({
-      variables: { id: item.id }
+      variables: { id: item.id },
     })
   }
 

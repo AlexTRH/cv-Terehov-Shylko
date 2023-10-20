@@ -4,12 +4,12 @@ import { NavLink, Outlet, useLocation, useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { Tab } from '@mui/material'
 import { PersonOutline } from '@mui/icons-material'
-import { PageLoader } from '../../components/atoms/page-loader'
-import { useBreadcrumbs } from '../../hooks/use-breadcrumbs.hook'
-import { getUserFullNameQuery } from '../../graphql/users/users.queries'
-import { UserResult } from '../../graphql/users/users.types'
+import { PageLoader } from '@atoms/page-loader'
+import { useBreadcrumbs } from '@hooks/use-breadcrumbs.hook'
+import { getUserFullNameQuery } from '@graphql/users/users.queries'
+import { UserResult } from '@graphql/users/users.types'
 import * as Styled from './employee-details.styles'
-import { RoutesPath } from '../../constants/routes.constants'
+import { RoutesPath } from '@constants/routes.constants'
 
 const EmployeeDetails = () => {
   const location = useLocation()

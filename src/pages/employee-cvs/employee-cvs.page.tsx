@@ -2,9 +2,9 @@ import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { CircularProgress } from '@mui/material'
-import { UserResult } from 'graphql/users/users.types'
-import { getUserCVsQuery } from '../../graphql/users/users.queries'
-import Preloader from '../../components/atoms/preloader/preloader.atom'
+import { UserResult } from '@graphql/users/users.types'
+import { getUserCVsQuery } from '@graphql/users/users.queries'
+import Preloader from '@atoms/preloader/preloader.atom'
 
 const EmployeeCvs = () => {
   const { id } = useParams()
