@@ -4,30 +4,29 @@ import { Button, TextField } from '@mui/material'
 import { DepartmentSelect } from '../../molecules/department-select'
 import { PositionSelect } from '../../molecules/position-select'
 import { useUserUpdate } from '../../../hooks/use-users.hook'
-import { IUser } from '../../../interfaces/user.interface'
 import { useUser } from '../../../hooks/use-user.hook'
 import {
   EmployeeProfileFormProps,
   EmployeeProfileFormValues,
 } from './employee-profile-form.types'
 import * as Styled from './employee-profile-form.styles'
+import { setDefaultUserValues } from '../../../helpers/user.helper'
 
 export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
   const [updateUser, loading] = useUserUpdate()
   const { user$, isAdmin } = useUser()
   const { t } = useTranslation()
-
-  const setDefaultValues = (user: IUser) => ({
-    first_name: user.profile.first_name || '',
-    last_name: user.profile.last_name || '',
-    department: user.department?.id || '',
-    position: user.position?.id || '',
-  })
+  const userRoleId = user$?.id
 
   const methods = useForm<EmployeeProfileFormValues>({
-    defaultValues: setDefaultValues(user),
+    defaultValues: setDefaultUserValues(user),
   })
-  const { formState, register, handleSubmit, reset } = methods
+  const {
+    formState: { isDirty },
+    register,
+    handleSubmit,
+    reset,
+  } = methods
 
   const onSubmit = (values: EmployeeProfileFormValues) => {
     updateUser({
@@ -43,7 +42,7 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
           role: user.role,
         },
       },
-    }).then(({ data }) => data && reset(setDefaultValues(data.updateUser)))
+    }).then(({ data }) => data && reset(setDefaultUserValues(data.updateUser)))
   }
 
   return (
@@ -53,11 +52,11 @@ export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
         <TextField {...register('last_name')} label={t('Last Name')} />
         <DepartmentSelect name="department" />
         <PositionSelect name="position" />
-        {(isAdmin || user$?.id === user.id) && (
+        {(isAdmin || userRoleId === user.id) && (
           <Button
             type="submit"
             variant="contained"
-            disabled={!formState.isDirty || loading}
+            disabled={!isDirty || loading}
             sx={{ gridColumn: 2 }}
           >
             {t('Update')}

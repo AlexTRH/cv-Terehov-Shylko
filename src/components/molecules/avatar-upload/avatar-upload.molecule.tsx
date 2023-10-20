@@ -1,4 +1,4 @@
-import { ChangeEvent, DragEvent } from 'react'
+import { ChangeEvent, DragEvent, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Badge, IconButton, Typography } from '@mui/material'
 import { Close, FileUploadOutlined } from '@mui/icons-material'
@@ -11,22 +11,28 @@ import { fileToBase64 } from '../../../helpers/file-to-base64.helper'
 import { AvatarUploadProps } from './avatar-upload.types'
 import * as Styled from './avatar-upload.styles'
 
+const { t } = useTranslation()
+
 export const AvatarUpload = ({ user }: AvatarUploadProps) => {
-  const { t } = useTranslation()
   const [uploadAvatar, isLoading] = useAvatarUpload()
   const [deleteAvatar, isDeleting] = useAvatarDelete()
-  const profileId = user.profile.id
 
-  const handleUpload = (file: File) => {
-    fileToBase64(file)
-      .then((avatar) => uploadAvatar({ variables: { id: profileId, avatar } }))
-      .then(({ data }) => data && authService.updateAvatar(data.uploadAvatar))
+  const profileId = useMemo(() => user.profile.id, [user.profile.id])
+
+  const handleUpload = async (file: File) => {
+    const avatar = await fileToBase64(file)
+    const { data } = await uploadAvatar({
+      variables: { id: profileId, avatar },
+    })
+    if (data) {
+      authService.updateAvatar(data.uploadAvatar)
+    }
   }
 
   const handleDelete = () => {
-    deleteAvatar({ variables: { id: profileId } }).then(() =>
+    deleteAvatar({ variables: { id: profileId } }).then(() => {
       authService.updateAvatar('')
-    )
+    })
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -58,9 +64,9 @@ export const AvatarUpload = ({ user }: AvatarUploadProps) => {
       >
         <Styled.Avatar src={user.profile.avatar}>
           {user.profile.full_name
-            ? user.profile.first_name?.[0] ||
-              '' + user.profile.last_name?.[0] ||
-              ''
+            ? `${user.profile.first_name?.[0] || ''}${
+                user.profile.last_name?.[0] || ''
+              }`
             : user.email[0]}
         </Styled.Avatar>
       </Badge>
