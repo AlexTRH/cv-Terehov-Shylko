@@ -17,9 +17,9 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
     refetchQueries: [{ query: getProjectsQuery }],
     onError: (error) => {
       console.error('An error occurred during the mutation:', error)
-      setErrorMessage(true);
+      setErrorMessage(true)
     }
-  });
+  })
 
   const handleDelete = () => {
     DeleteProject({
@@ -28,19 +28,16 @@ export const ProjectsTableRow = ({ item }: TableRowProps<IProject>) => {
   }
 
   return (
-    <>
-    {errorMessage && <Notifications />}
-      <TableRow>
-        <TableCell>{item.name}</TableCell>
-        <TableCell sx={{ textAlign: 'right' }}>
-          <ActionsMenu>
-            <MenuItem disabled={!isAdmin} onClick={handleDelete}>
-              Delete
-            </MenuItem>
-          </ActionsMenu>
-        </TableCell>
-      </TableRow>
-    </>
-      
+    <TableRow>
+      <TableCell>{item.name}</TableCell>
+      <TableCell sx={{ textAlign: 'right' }}>
+        {errorMessage && <Notifications message="Something went wrong" show={errorMessage} />}
+        <ActionsMenu>
+          <MenuItem disabled={isAdmin} onClick={handleDelete}>
+            Delete
+          </MenuItem>
+        </ActionsMenu>
+      </TableCell>
+    </TableRow>
   )
 }
