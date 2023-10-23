@@ -11,17 +11,15 @@ const Languages = () => {
   const [languages, loading] = useLanguages()
 
   return (
-    <div>
-      <Table
-        items={languages}
-        loading={loading}
-        TableToolComponent={LanguagesTableTool}
-        TableHeadComponent={LanguagesTableHead}
-        TableRowComponent={LanguagesTableRow}
-        searchBy={['name', 'native_name', 'iso2']}
-        defaultSortBy="name"
-      />
-    </div>
+    <Table
+      items={languages}
+      loading={loading}
+      TableToolComponent={LanguagesTableTool}
+      TableHeadComponent={LanguagesTableHead}
+      TableRowComponent={LanguagesTableRow}
+      searchBy={['name', 'native_name', 'iso2']}
+      defaultSortBy="name"
+    />
   )
 }
 

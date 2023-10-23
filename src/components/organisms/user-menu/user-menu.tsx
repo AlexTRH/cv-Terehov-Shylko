@@ -38,7 +38,7 @@ export const UserMenu = () => {
   }
 
   const openProfile = () => {
-    navigate(RoutesPath.Employee_profile.replace(':id', `${user?.id}`), {
+    navigate(RoutesPath.EmployeeProfile.replace(':id', `${user?.id}`), {
       replace: true,
     })
   }

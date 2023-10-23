@@ -12,12 +12,16 @@ const EmployeeSkills = () => {
     variables: { id },
   })
 
-  if (loading || !data) {
+  if (loading) {
     return <CircularProgress />
   }
 
+  if (!data) {
+    return <Typography variant="body1">No skills data available</Typography>
+  }
+
   return (
-    <div>
+    <>
       {data?.user.profile.skills.map(({ skill_name, mastery }) => (
         <Styled.Skill key={skill_name}>
           <Typography variant="body1" sx={{ mr: 2 }}>
@@ -26,7 +30,7 @@ const EmployeeSkills = () => {
           <Chip label={mastery} variant="outlined" size="small" />
         </Styled.Skill>
       ))}
-    </div>
+    </>
   )
 }
 

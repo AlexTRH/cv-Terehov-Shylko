@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import { useReactiveVar } from '@apollo/client'
-
 import { EmployeeSkills } from '@pages/employee-skills'
 import { Languages } from '@pages/languages'
 import { authService } from '@graphql/auth/auth.service'
@@ -15,9 +14,7 @@ import Layout from '@templates/layout/layout.template'
 import { EmployeeProfile } from '@pages/employee-profile'
 import { EmployeeDetails } from '@pages/employee-details'
 import { EmployeeCvs } from '@pages/employee-cvs'
-
 import { ProfilePage } from '@pages/employee-profile/employee-profile.styles'
-
 
 const AppRouter = () => {
   const isAuth = useReactiveVar(authService.access_token$)
@@ -45,13 +42,13 @@ const AppRouter = () => {
             <Route path={RoutesPath.Skills} element={<SkillsPage />} />
 
             <Route
-              path={RoutesPath.Employee_profile}
+              path={RoutesPath.EmployeeProfile}
               element={<ProfilePage />}
             />
             <Route path=":id" element={<EmployeeDetails />} />
-            <Route path={RoutesPath.Employee_cvs} element={<EmployeeCvs />} />
+            <Route path={RoutesPath.EmployeeCvs} element={<EmployeeCvs />} />
             <Route
-              path={RoutesPath.Employee_skills}
+              path={RoutesPath.EmployeeSkills}
               element={<EmployeeSkills />}
             />
             <Route path={RoutesPath.Languages} element={<Languages />} />

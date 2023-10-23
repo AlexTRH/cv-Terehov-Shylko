@@ -21,16 +21,13 @@ export const LanguagesTableRow = ({ item }: TableRowProps<ILanguage>) => {
   }
 
   const handleDelete = () => {
-    const dialogTitle = t('Delete Language')
-    const dialogContent = (
-      <Typography>
-        {t('Are you sure you want to delete language')} <b>{item.name}</b>?
-      </Typography>
-    )
-
     openConfirmDialog({
-      dialogTitle,
-      dialogContent,
+      dialogTitle: t('Delete Language'),
+      dialogContent: (
+        <Typography>
+          {t('Are you sure you want to delete language')} <b>{item.name}</b>?
+        </Typography>
+      ),
       confirmCallback: () => deleteLanguage(),
     })
   }
