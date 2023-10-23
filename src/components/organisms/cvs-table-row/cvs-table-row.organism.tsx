@@ -28,7 +28,6 @@ export const CVsTableRow = ({ item }: TableRowProps<ICV>) => {
       <TableCell>
         <ActionsMenu>
           <MenuItem disabled>{t('CV')}</MenuItem>
-          <MenuItem disabled>{t('Delete CV')}</MenuItem>
         </ActionsMenu>
       </TableCell>
     </TableRow>

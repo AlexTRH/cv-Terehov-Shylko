@@ -7,15 +7,16 @@ import { CVsTableRow } from '../../components/organisms/cvs-table-row'
 import { getCVsQuery } from '../../graphql/cvs/cvs.queries'
 import { CVsResult } from '../../graphql/cvs/cvs.types'
 import { ICV } from '../../interfaces/cv.interface'
+import Preloader from '../../components/atoms/preloader/preloader.atom'
 
 const Table = createTable<ICV>()
 
 const CVsPage = () => {
-  const { data, loading } = useQuery<CVsResult>(getCVsQuery)
+  const { data, loading, error } = useQuery<CVsResult>(getCVsQuery)
   const cvsData = data?.cvs || []
 
   return (
-    <div>
+    <Preloader loading={loading} error={error}>
       <Table
         items={cvsData}
         loading={loading}
@@ -25,7 +26,7 @@ const CVsPage = () => {
         searchBy={['name']}
         defaultSortBy="name"
       />
-    </div>
+    </Preloader>
   )
 }
 
