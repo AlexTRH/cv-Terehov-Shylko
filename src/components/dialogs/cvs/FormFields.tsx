@@ -5,26 +5,12 @@ import {
   FormControlLabel,
   OutlinedInput
 } from '@mui/material'
-import { Control, Controller, ControllerRenderProps } from 'react-hook-form'
-import { IFormInput } from './IFormInput'
+import { Controller } from 'react-hook-form'
+import {FormFieldsProps, Render, FormField} from './FormFields.types'
 
-interface Props {
-  control: Control<IFormInput, any>;
-}
 
-type FieldNames = 'name' | 'description' | 'template'
 
-interface Render {
-  field: ControllerRenderProps<IFormInput, FieldNames>
-}
-
-interface FormField {
-  name: FieldNames;
-  defaultValue?: string | boolean | undefined;
-  render: (renderParam: Render) => JSX.Element;
-}
-
-const FormFields: React.FC<Props> = ({ control }) => {
+const FormFields: React.FC<FormFieldsProps> = ({ control }) => {
   const formFields: FormField[] = [
     {
       name: 'name',
