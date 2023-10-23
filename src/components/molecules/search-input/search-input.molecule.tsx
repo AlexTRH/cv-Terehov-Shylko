@@ -2,7 +2,7 @@ import { ChangeEvent, memo, useCallback, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TextField, TextFieldProps } from '@mui/material'
 import { Search } from '@mui/icons-material'
-import { TableSearchContext } from '../../templates/table/table.context'
+import { TableSearchContext } from '@templates/table/table.context'
 
 const SearchInput = (props: TextFieldProps) => {
   const { search, setSearch } = useContext(TableSearchContext)
