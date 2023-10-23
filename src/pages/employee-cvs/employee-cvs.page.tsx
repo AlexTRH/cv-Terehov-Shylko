@@ -11,22 +11,21 @@ const EmployeeCvs = () => {
   const { data, loading, error } = useQuery<UserResult>(getUserCVsQuery, {
     variables: { id },
   })
+  const cvs = data?.user?.cvs || []
 
   if (loading) {
     return <CircularProgress />
   }
 
-  const cvs = data?.user?.cvs || []
+  if (!cvs.length) {
+    return <p>No CVs available.</p>
+  }
 
   return (
     <Preloader loading={loading} error={error}>
-      <div>
-        {cvs.length === 0 ? (
-          <p>No CVs available.</p>
-        ) : (
-          cvs.map((cv) => <div key={cv.name}>{cv.name}</div>)
-        )}
-      </div>
+      {cvs.map((cv) => (
+        <div key={cv.name}>{cv.name}</div>
+      ))}
     </Preloader>
   )
 }
