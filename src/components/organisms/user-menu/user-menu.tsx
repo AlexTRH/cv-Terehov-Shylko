@@ -5,11 +5,11 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import { Divider, IconButton, Menu, MenuItem, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { RoutesPath } from '../../constants/routes.constants'
+import { RoutesPath } from '@constants/routes.constants'
 
-import { authService } from '../../graphql/auth/auth.service'
-import { UserResult } from '../../graphql/users/users.types'
-import { getUserQuery } from '../../graphql/users/users.queries'
+import { authService } from '@graphql/auth/auth.service'
+import { UserResult } from '@graphql/users/users.types'
+import { getUserQuery } from '@graphql/users/users.queries'
 import { IconStyles, StyledAvatar, UserMenuWrap } from './user-menu.styles'
 
 export const UserMenu = () => {

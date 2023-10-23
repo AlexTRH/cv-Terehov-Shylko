@@ -1,4 +1,4 @@
-import { RoutesPath } from '../../../constants/routes.constants'
+import { RoutesPath } from '@constants/routes.constants'
 
 export interface ListItem {
   IconComponent?: React.ElementType

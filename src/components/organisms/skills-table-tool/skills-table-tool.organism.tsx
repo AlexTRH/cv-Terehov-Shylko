@@ -2,15 +2,15 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useTranslation } from 'react-i18next'
 import { useForm } from 'react-hook-form'
-import { FormInput } from '../../dialogs/skills/skill-dialog.types'
+import { FormInput } from '@dialogs/skills/skill-dialog.types'
 import { Button } from '@mui/material'
-import { SearchInput } from '../../molecules/search-input'
-import SkillsTemplate from '../../dialogs/skills/skills-template'
+import { SearchInput } from '@molecules/search-input'
+import SkillsTemplate from '@dialogs/skills/skills-template'
 import {
   getCreateSkillMutation,
   getSkillsQuery,
-} from '../../../graphql/skills/skills.queries'
-import { useUser } from '../../../hooks/use-user.hook'
+} from '@graphql/skills/skills.queries'
+import { useUser } from '@hooks/use-user.hook'
 
 export const SkillsTableConfirm = () => {
   const { t } = useTranslation()

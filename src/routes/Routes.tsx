@@ -1,16 +1,20 @@
 import React, { Suspense } from 'react'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import { useReactiveVar } from '@apollo/client'
-import { authService } from '../graphql/auth/auth.service'
-import { RoutesPath } from '../constants/routes.constants'
-import LogInPage from '../pages/auth/login-page/index'
-import SignupPage from '../pages/auth/signup-page/index'
-import EmployeesPage from '../pages/employees/index'
-import ProjectsPage from '../pages/projects/index'
-import SkillsPage from '../pages/skills/index'
-import Layout from '../components/templates/layout/layout.template'
-import { ProfilePage } from '../pages/employee-profile/employee-profile.styles'
+import { authService } from '@graphql/auth/auth.service'
+import { RoutesPath } from '@constants/routes.constants'
+import LogInPage from '@pages/auth/login-page/index'
+import SignupPage from '@pages/auth/signup-page/index'
+import EmployeesPage from '@pages/employees/index'
+import ProjectsPage from '@pages/projects/index'
+import SkillsPage from '@pages/skills/index'
+import Layout from '@templates/layout/layout.template'
 
+import { EmployeeProfile } from '@pages/employee-profile'
+import { EmployeeDetails } from '@pages/employee-details'
+import { EmployeeCvs } from '@pages/employee-cvs'
+
+import { ProfilePage } from '@pages/employee-profile/employee-profile.styles'
 
 const AppRouter = () => {
   const isAuth = useReactiveVar(authService.access_token$)
@@ -41,6 +45,8 @@ const AppRouter = () => {
               path={RoutesPath.Employee_profile}
               element={<ProfilePage />}
             />
+            <Route path=":id" element={<EmployeeDetails />} />
+            <Route path={RoutesPath.Cvs} element={<EmployeeCvs />} />
           </Route>
         </Routes>
       </Suspense>

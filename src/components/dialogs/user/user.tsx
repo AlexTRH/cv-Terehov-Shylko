@@ -1,15 +1,15 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { DepartmentSelect } from '../../molecules/department-select'
-import { PositionSelect } from '../../molecules/position-select'
-import { RoleSelect } from '../../molecules/role-select'
-import { useUserCreate, useUserUpdate } from '../../../hooks/use-users.hook'
-import { createDialogHook } from '../../../hooks/create-dialog-hook.helper'
+import { DepartmentSelect } from '@molecules/department-select'
+import { PositionSelect } from '@molecules/position-select'
+import { RoleSelect } from '@molecules/role-select'
+import { useUserCreate, useUserUpdate } from '@hooks/use-users.hook'
+import { createDialogHook } from '@hooks/create-dialog-hook.helper'
 import {
   passwordValidation,
   requiredValidation,
-} from '../../../helpers/validation.helper'
+} from '@helpers/validation.helper'
 import { UserFormValues, UserProps } from './user.types'
 import * as Styled from './user.styles'
 import { defaultValues } from './user.data'

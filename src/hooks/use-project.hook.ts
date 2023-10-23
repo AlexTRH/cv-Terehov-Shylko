@@ -3,9 +3,9 @@ import {
   getCreateProjectMutation,
   getDeleteProjectMutation,
   getProjectsQuery,
-} from '../graphql/projects/projects.queries'
-import { CreateProjectResult } from '../graphql/projects/projects.types'
-import { IProject } from '../interfaces/project.interface'
+} from '@graphql/projects/projects.queries'
+import { CreateProjectResult } from '@graphql/projects/projects.types'
+import { IProject } from '@interfaces/project.interface'
 
 export const useProjectCreate = (): [
   MutationFunction<CreateProjectResult>,

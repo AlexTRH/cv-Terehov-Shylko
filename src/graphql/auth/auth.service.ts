@@ -1,7 +1,7 @@
 import { makeVar } from '@apollo/client'
 import { IAuthService } from './auth.types'
-import { IUser } from '../../interfaces/user.interface'
-import { StorageKeys } from '../../constants/storage.constants'
+import { IUser } from '@interfaces/user.interface'
+import { StorageKeys } from '@constants/storage.constants'
 
 class AuthService implements IAuthService {
   user$ = makeVar<IUser | null>(null)
@@ -20,11 +20,11 @@ class AuthService implements IAuthService {
     }
   }
 
-   addUserToStorage(user: IUser, access_token: string) {
-    this.user$(user);
-    this.access_token$(access_token);
-    this.storageService.setItem('user', JSON.stringify(user));
-    this.storageService.setItem('access_token', access_token);
+  addUserToStorage(user: IUser, access_token: string) {
+    this.user$(user)
+    this.access_token$(access_token)
+    this.storageService.setItem('user', JSON.stringify(user))
+    this.storageService.setItem('access_token', access_token)
   }
 
   login(user: IUser, access_token: string) {

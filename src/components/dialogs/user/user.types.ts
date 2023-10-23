@@ -1,5 +1,5 @@
-import { DialogProps } from '../../../graphql/dialogs/dialogs.types'
-import { IUser } from '../../../interfaces/user.interface'
+import { DialogProps } from '@graphql/dialogs/dialogs.types'
+import { IUser } from '@interfaces/user.interface'
 
 export type UserFormValues = {
   auth: {
