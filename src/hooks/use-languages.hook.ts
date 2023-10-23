@@ -3,14 +3,14 @@ import {
   CreateLanguageResult,
   LanguagesResult,
   UpdateLanguageResult,
-} from 'graphql/languages/languages.types'
-import { ILanguage } from 'interfaces/language.interface'
+} from '@graphql/languages/languages.types'
+import { ILanguage } from '@interfaces/language.interface'
 import {
   getCreateLanguageMutation,
   getDeleteLanguageMutation,
   getLanguagesQuery,
   getUpdateLanguageMutation,
-} from '../graphql/languages/languages.queries'
+} from '@graphql/languages/languages.queries'
 
 export const useLanguages = (): [ILanguage[], boolean] => {
   const { data, loading } = useQuery<LanguagesResult>(getLanguagesQuery)

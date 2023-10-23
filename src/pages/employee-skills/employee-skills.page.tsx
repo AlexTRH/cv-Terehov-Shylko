@@ -2,8 +2,8 @@ import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { Chip, CircularProgress, Typography } from '@mui/material'
-import { UserResult } from 'graphql/users/users.types'
-import { getUserQuery } from '../../graphql/users/users.queries'
+import { UserResult } from '@graphql/users/users.types'
+import { getUserQuery } from '@graphql/users/users.queries'
 import * as Styled from './employee-skills.styles'
 
 const EmployeeSkills = () => {
