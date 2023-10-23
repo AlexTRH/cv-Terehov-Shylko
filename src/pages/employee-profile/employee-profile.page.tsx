@@ -17,20 +17,19 @@ const EmployeeProfile = () => {
   })
 
   if (loading || !data) {
-    // TODO: add loader
     return null
   }
 
   return (
     <>
       <AvatarUpload user={data.user} />
-      <Styled.Profile>
+      <Styled.ProfilePage>
         <Typography variant="h5">{data.user.profile.full_name}</Typography>
         <Typography>{data.user.email}</Typography>
         <Typography>
           {t('A member since')} {new Date(+data.user.created_at).toDateString()}
         </Typography>
-      </Styled.Profile>
+      </Styled.ProfilePage>
       <EmployeeProfileForm user={data.user} />
     </>
   )
