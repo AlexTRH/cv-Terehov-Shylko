@@ -1,9 +1,14 @@
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, DialogActions, DialogTitle, TextField } from '@mui/material'
-import { useLanguageCreate, useLanguageUpdate } from '@hooks/use-languages.hook'
-import { createDialogHook } from '@hooks/create-dialog-hook.helper'
+import {
+  useLanguageCreate,
+  useLanguageUpdate,
+} from '../../../hooks/use-languages.hook'
+import { createDialogHook } from '../../../hooks/create-dialog-hook.helper'
 import { LanguageFormValues, LanguageProps } from './language.types'
+import { Notifications } from '../../features/notifications'
 import * as Styled from './language.styles'
 
 const defaultValues: LanguageFormValues = {
@@ -12,16 +17,17 @@ const defaultValues: LanguageFormValues = {
   iso2: '',
 }
 
-const Language = ({ item, closeDialog }: LanguageProps) => {
+const Language = ({ languageItem, closeDialog }: LanguageProps) => {
   const { t } = useTranslation()
   const {
     handleSubmit,
     register,
     formState: { errors, isDirty },
   } = useForm<LanguageFormValues>({
-    defaultValues: item || defaultValues,
+    defaultValues: languageItem || defaultValues,
   })
 
+  const [errorMessage, setErrorMessage] = useState('')
   const [createLanguage, loading] = useLanguageCreate()
   const [updateLanguage, updating] = useLanguageUpdate()
 
@@ -32,26 +38,37 @@ const Language = ({ item, closeDialog }: LanguageProps) => {
       native_name: values.native_name,
     }
 
-    if (item) {
+    if (languageItem) {
       updateLanguage({
         variables: {
-          id: item.id,
+          id: languageItem.id,
           language: languageData,
         },
-      }).then(closeDialog)
+      })
+        .then(closeDialog)
+        .catch((error) => {
+          console.error('An error occurred during language update:', error)
+          setErrorMessage('Failed to update language. Please try again.')
+        })
     } else {
       createLanguage({
         variables: {
           language: languageData,
         },
-      }).then(closeDialog)
+      })
+        .then(closeDialog)
+        .catch((error) => {
+          console.error('An error occurred during language creation:', error)
+          setErrorMessage('Failed to create language. Please try again.')
+        })
     }
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <DialogTitle>
-        {item ? t('Update language') : t('Create language')}
+
+        {languageItem ? t('Update language') : t('Create language')}
       </DialogTitle>
       <Styled.Column>
         <TextField
@@ -81,9 +98,10 @@ const Language = ({ item, closeDialog }: LanguageProps) => {
           type="submit"
           disabled={loading || updating || !isDirty}
         >
-          {item ? t('Update') : t('Create')}
+          {languageItem ? t('Update') : t('Create')}
         </Button>
       </DialogActions>
+      {errorMessage && <Notifications message={errorMessage} show={true} />}
     </form>
   )
 }
