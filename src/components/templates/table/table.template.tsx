@@ -6,10 +6,10 @@ import {
   TableFooter,
   TableRow,
 } from '@mui/material'
-import { SortOrder } from '../../../constants/table-sort.constants'
-import { TableLoader } from '../../atoms/table-loader'
-import { sortItems } from '../../../helpers/table-sort.helper'
-import { searchItems } from '../../../helpers/table-search.helper'
+import { SortOrder } from '@constants/table-sort.constants'
+import { TableLoader } from '@atoms/table-loader'
+import { sortItems } from '@helpers/table-sort.helper'
+import { searchItems } from '@helpers/table-search.helper'
 import { Item, TableProps } from './table.types'
 import { TableSearchContext, TableSortContext } from './table.context'
 import * as Styled from './table.styles'

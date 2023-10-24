@@ -1,16 +1,16 @@
 import { useForm, FormProvider } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Button, TextField } from '@mui/material'
-import { DepartmentSelect } from '../../molecules/department-select'
-import { PositionSelect } from '../../molecules/position-select'
-import { useUserUpdate } from '../../../hooks/use-users.hook'
-import { useUser } from '../../../hooks/use-user.hook'
+import { DepartmentSelect } from '@molecules/department-select'
+import { PositionSelect } from '@molecules/position-select'
+import { useUserUpdate } from '@hooks/use-users.hook'
+import { useUser } from '@hooks/use-user.hook'
 import {
   EmployeeProfileFormProps,
   EmployeeProfileFormValues,
 } from './employee-profile-form.types'
 import * as Styled from './employee-profile-form.styles'
-import { setDefaultUserValues } from '../../../helpers/user.helper'
+import { setDefaultUserValues } from '@helpers/user.helper'
 
 export const EmployeeProfileForm = ({ user }: EmployeeProfileFormProps) => {
   const [updateUser, loading] = useUserUpdate()

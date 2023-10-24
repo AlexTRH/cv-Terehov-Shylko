@@ -28,7 +28,6 @@ const Language = ({ languageItem, closeDialog }: LanguageProps) => {
   })
 
   const [errorMessage, setErrorMessage] = useState('')
-
   const [createLanguage, loading] = useLanguageCreate()
   const [updateLanguage, updating] = useLanguageUpdate()
 
@@ -68,6 +67,7 @@ const Language = ({ languageItem, closeDialog }: LanguageProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <DialogTitle>
+
         {languageItem ? t('Update language') : t('Create language')}
       </DialogTitle>
       <Styled.Column>

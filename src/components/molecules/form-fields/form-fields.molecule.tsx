@@ -1,6 +1,6 @@
 import React from 'react'
 import { Control, Controller } from 'react-hook-form'
-import { FormInput } from '../../dialogs/skills/skill-dialog.types'
+import { FormInput } from '@dialogs/skills/skill-dialog.types'
 import { FieldNames, Render } from './form-fields.interface'
 import { formFields } from './form-fields.data'
 import FormField from './form-field.molecule'

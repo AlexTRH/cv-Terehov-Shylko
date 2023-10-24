@@ -8,14 +8,14 @@ import {
   MenuItem,
   Typography,
 } from '@mui/material'
-import { IUser } from 'interfaces/user.interface'
-import { useUser } from '../../../hooks/use-user.hook'
-import { useUserDelete } from '../../../hooks/use-users.hook'
-import { TableRowProps } from '../../templates/table/table.types'
-import { ActionsMenu } from '../../atoms/actions-menu'
-import { useUserDialog } from '../../dialogs/user'
-import { useConfirmDialog } from '../../dialogs/confirm'
-import { UserActions } from '../../../constants/users-table-row.constants'
+import { IUser } from '@interfaces/user.interface'
+import { useUser } from '@hooks/use-user.hook'
+import { useUserDelete } from '@hooks/use-users.hook'
+import { TableRowProps } from '@templates/table/table.types'
+import { ActionsMenu } from '@atoms/actions-menu'
+import { useUserDialog } from '@dialogs/user'
+import { useConfirmDialog } from '@dialogs/confirm'
+import { UserActions } from '@constants/users-table-row.constants'
 
 const UsersTableRow = ({ item }: TableRowProps<IUser>) => {
   const navigate = useNavigate()

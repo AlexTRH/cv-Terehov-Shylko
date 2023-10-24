@@ -2,22 +2,27 @@ import { memo } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { Chip, CircularProgress, Typography } from '@mui/material'
-import { UserResult } from 'graphql/users/users.types'
-import { getUserQuery } from '../../graphql/users/users.queries'
+import { UserResult } from '@graphql/users/users.types'
+import { getUserQuery } from '@graphql/users/users.queries'
+import Preloader from '@atoms/preloader/preloader.atom'
 import * as Styled from './employee-skills.styles'
 
 const EmployeeSkills = () => {
   const { id } = useParams()
-  const { data, loading } = useQuery<UserResult>(getUserQuery, {
+  const { data, loading, error } = useQuery<UserResult>(getUserQuery, {
     variables: { id },
   })
 
-  if (loading || !data) {
+  if (loading) {
     return <CircularProgress />
   }
 
+  if (!data) {
+    return <Typography variant="body1">No skills data available</Typography>
+  }
+
   return (
-    <div>
+    <Preloader loading={loading} error={error}>
       {data?.user.profile.skills.map(({ skill_name, mastery }) => (
         <Styled.Skill key={skill_name}>
           <Typography variant="body1" sx={{ mr: 2 }}>
@@ -26,7 +31,7 @@ const EmployeeSkills = () => {
           <Chip label={mastery} variant="outlined" size="small" />
         </Styled.Skill>
       ))}
-    </div>
+    </Preloader>
   )
 }
 

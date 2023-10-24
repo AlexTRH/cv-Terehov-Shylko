@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form'
 import {
   getCreateProjectMutation,
   getProjectsQuery,
-} from '../../../graphql/projects/projects.queries'
+} from '@graphql/projects/projects.queries'
 import { StyledBox, StyledDialogTitle } from '../skills/skills-dialog.styles'
 import { FormInput } from '../skills/skill-dialog.types'
-import FormFields from '../../molecules/form-fields/form-fields.molecule'
+import FormFields from '@molecules/form-fields/form-fields.molecule'
 import { ProjectFormProps } from './project-form.type'
 
 const CreateProjectForm: React.FC<ProjectFormProps> = ({

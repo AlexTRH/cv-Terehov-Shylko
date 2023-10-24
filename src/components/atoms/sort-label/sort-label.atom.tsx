@@ -1,10 +1,10 @@
 import { memo, useContext } from 'react'
 import { TableSortLabel } from '@mui/material'
-import { TableSortContext } from '../../templates/table/table.context'
+import { TableSortContext } from '@templates/table/table.context'
 import { SortLabelProps } from './sort-label.types'
 import { Path } from 'react-hook-form'
-import { changeOrder } from '../../../helpers/table-sort.helper'
-import { Item } from '../../templates/table/table.types'
+import { changeOrder } from '@helpers/table-sort.helper'
+import { Item } from '@templates/table/table.types'
 
 const SortLabel = <K extends string>({
   column,

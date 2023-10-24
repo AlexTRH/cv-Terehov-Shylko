@@ -1,13 +1,13 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { MenuItem, TableCell, TableRow, Typography } from '@mui/material'
-import { ActionsMenu } from '../../atoms/actions-menu'
-import { TableRowProps } from '../../templates/table/table.types'
-import { useLanguageDialog } from '../../dialogs/language'
-import { useConfirmDialog } from '../../dialogs/confirm'
-import { ILanguage } from '../../../interfaces/language.interface'
-import { useUser } from '../../../hooks/use-user.hook'
-import { useLanguageDelete } from '../../../hooks/use-languages.hook'
+import { ActionsMenu } from '@atoms/actions-menu'
+import { TableRowProps } from '@templates/table/table.types'
+import { useLanguageDialog } from '@dialogs/language'
+import { useConfirmDialog } from '@dialogs/confirm'
+import { ILanguage } from '@interfaces/language.interface'
+import { useUser } from '@hooks/use-user.hook'
+import { useLanguageDelete } from '@hooks/use-languages.hook'
 
 export const LanguagesTableRow = ({ item }: TableRowProps<ILanguage>) => {
   const { isAdmin } = useUser()

@@ -1,15 +1,18 @@
 import CloseIcon from '@mui/icons-material/Close'
 import { Button, Dialog, DialogContent, IconButton } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import {
-  StyledBox,
-  StyledDialogTitle,
-} from './skills-dialog.styles'
+import { StyledBox, StyledDialogTitle } from './skills-dialog.styles'
 import { FormInput } from './skill-dialog.types'
-import FormFields from '../../molecules/form-fields/form-fields.molecule'
+import FormFields from '@molecules/form-fields/form-fields.molecule'
 import { SkillsProps } from './skills.interface'
 
-const SkillsTemplate: React.FC<SkillsProps> = ({ close, confirm, opened, onSubmit, title }) => {
+const SkillsTemplate: React.FC<SkillsProps> = ({
+  close,
+  confirm,
+  opened,
+  onSubmit,
+  title,
+}) => {
   const { control, handleSubmit } = useForm<FormInput>()
 
   return (
