@@ -21,7 +21,7 @@ const EmployeeDetails = () => {
     return <div>Ошибка: ID не найден</div>
   }
 
-  const path = RoutesPath.Employee_profile.replace(':id', id)
+  const path = RoutesPath.EmployeeProfile.replace(':id', id)
 
   const { data } = useQuery<UserResult>(getUserFullNameQuery, {
     variables: { id },

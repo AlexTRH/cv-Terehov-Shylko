@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react'
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
 import { useReactiveVar } from '@apollo/client'
+import { EmployeeSkills } from '@pages/employee-skills'
+import { Languages } from '@pages/languages'
 import { authService } from '@graphql/auth/auth.service'
 import { RoutesPath } from '@constants/routes.constants'
 import LogInPage from '@pages/auth/login-page/index'
@@ -9,11 +11,9 @@ import EmployeesPage from '@pages/employees/index'
 import ProjectsPage from '@pages/projects/index'
 import SkillsPage from '@pages/skills/index'
 import Layout from '@templates/layout/layout.template'
-
 import { EmployeeProfile } from '@pages/employee-profile'
 import { EmployeeDetails } from '@pages/employee-details'
 import { EmployeeCvs } from '@pages/employee-cvs'
-
 import { ProfilePage } from '@pages/employee-profile/employee-profile.styles'
 
 const AppRouter = () => {
@@ -42,11 +42,16 @@ const AppRouter = () => {
             <Route path={RoutesPath.Skills} element={<SkillsPage />} />
 
             <Route
-              path={RoutesPath.Employee_profile}
+              path={RoutesPath.EmployeeProfile}
               element={<ProfilePage />}
             />
             <Route path=":id" element={<EmployeeDetails />} />
-            <Route path={RoutesPath.Cvs} element={<EmployeeCvs />} />
+            <Route path={RoutesPath.EmployeeCvs} element={<EmployeeCvs />} />
+            <Route
+              path={RoutesPath.EmployeeSkills}
+              element={<EmployeeSkills />}
+            />
+            <Route path={RoutesPath.Languages} element={<Languages />} />
           </Route>
         </Routes>
       </Suspense>
