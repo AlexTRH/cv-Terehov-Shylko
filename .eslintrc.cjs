@@ -17,6 +17,7 @@ module.exports = {
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "arrow-parens": "warn",
+    "import/no-unresolved": "off",
     "import/order": [
       "warn",
       {
@@ -29,14 +30,21 @@ module.exports = {
       },
     ],
     "no-console": "warn",
+    "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "ts": "never"
+            }
+        ]
   },
   settings: {
     "import/resolver": {
-      // "node": {
-      //     "paths": ["src"],
-      //     // "extensions": ['.js', '.jsx', '.ts', '.tsx'],
-      //     // "moduleDirectory": ['node_modules', 'src/'],
-      // },
+      "node": {
+          // "paths": ["src"],
+          "extensions": ['.js', '.jsx', '.ts','.d.ts', '.tsx'],
+          // "moduleDirectory": ['node_modules', 'src/'],
+      },
       typescript: {},
     },
   },

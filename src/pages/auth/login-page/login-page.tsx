@@ -5,11 +5,11 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { authService } from '../../../graphql/auth/auth.service'
-import { LoginResult } from '../../../graphql/auth/auth.types'
-import { getLoginQuery } from '../../../graphql/auth/auth.queries'
+import { authService } from '@graphql/auth/auth.service'
+import { LoginResult } from '@graphql/auth/auth.types'
+import { getLoginQuery } from '@graphql/auth/auth.queries'
 import { schema } from '../signup-page/validation-schema'
-import { RoutesPath } from '../../../constants/routes.constants'
+import { RoutesPath } from '@constants/routes.constants'
 
 import { IFormInput } from './types'
 import theme from '../../../themes/themes'
@@ -30,7 +30,7 @@ const LoginPage: FC = () => {
     setHiddenPassword((el) => !el)
   }
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const {
     register,

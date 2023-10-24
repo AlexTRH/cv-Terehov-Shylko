@@ -1,5 +1,5 @@
-import { TableCell, TableRow } from '@mui/material';
-import { createSortLabel } from '../../atoms/sort-label';
+import { TableCell, TableRow } from '@mui/material'
+import { createSortLabel } from '@atoms/sort-label'
 
 export const ProjectsTableHead = () => {
   return (
@@ -7,5 +7,5 @@ export const ProjectsTableHead = () => {
       <TableCell>{createSortLabel('name', 'Project Name')}</TableCell>
       <TableCell />
     </TableRow>
-  );
-};
+  )
+}

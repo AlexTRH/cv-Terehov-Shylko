@@ -10,9 +10,8 @@ export enum RoutesPath {
   Positions = '/positions',
   Skills = '/skills',
   Languages = '/languages',
-  Employee_profile = '/employees/:id/profile',
-  Employee_skills = '/employees/:id/skills',
+  EmployeeProfile = '/employees/:id/profile',
+  EmployeeSkills = '/employees/:id/skills',
   Employee_languages = '/employees/:id/languages',
-  Employee_cvs = '/employees/:id/cvs'
+  EmployeeCvs = '/employees/:id/cvs',
 }
-

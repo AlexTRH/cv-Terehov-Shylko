@@ -1,6 +1,6 @@
-import { Box, styled } from '@mui/material';
+import { Box, styled } from '@mui/material'
 
 export const StyledBox = styled(Box)({
   display: 'flex',
-  justifyContent: 'center'
-});
+  justifyContent: 'center',
+})
