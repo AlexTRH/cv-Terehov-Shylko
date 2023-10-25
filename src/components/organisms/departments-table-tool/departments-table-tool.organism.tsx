@@ -8,7 +8,7 @@ export const DepartmentsTableTool = () => {
   const [formOpened, setFormOpened] = useState<boolean>(false)
   const { isAdmin } = useUser()
 
-  const CreateClick = () => {
+  const createClick = () => {
     setFormOpened(true)
   }
 
@@ -16,27 +16,23 @@ export const DepartmentsTableTool = () => {
     setFormOpened(false)
   }
 
-  const create = async () => {
+  const create = () => {
     closeForm()
   }
 
-  const departmentsForm = (
-    <CreateDepartmentsForm
-      opened={formOpened}
-      close={closeForm}
-      confirm={create}
-    />
-  )
-
   return (
     <>
-      {departmentsForm}
+      <CreateDepartmentsForm
+        opened={formOpened}
+        close={closeForm}
+        confirm={create}
+      />
       <SearchInput key="search-input" />
       <Button
         disabled={!isAdmin}
         color="secondary"
         variant="contained"
-        onClick={CreateClick}
+        onClick={createClick}
       >
         Create Department
       </Button>

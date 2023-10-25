@@ -8,7 +8,7 @@ import {
   getUpdateDepartmentsMutation,
 } from '@graphql/departments/departments.queries'
 import FormFields from '@molecules/form-fields/form-fields.molecule'
-import { Props } from '@dialogs/departments/departments-update-form.interface'
+import { UpdateFormProps } from '@dialogs/departments/departments-update-form.interface'
 import { FormInput } from './departments-dialog.types'
 import { StyledBox, StyledDialogTitle } from './departments-dialog.styles'
 
@@ -16,7 +16,7 @@ const [UpdateDepartments] = useMutation(getUpdateDepartmentsMutation, {
   refetchQueries: [{ query: getDepartmentsQuery }],
 })
 
-const UpdateDepartmentsForm: React.FC<Props> = ({
+const UpdateDepartmentsForm: React.FC<UpdateFormProps> = ({
   close,
   confirm,
   opened,

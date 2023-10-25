@@ -25,7 +25,7 @@ export const DepartmentsTableRow = ({
     setFormOpened(false)
   }
 
-  const handleCreate = async () => {
+  const handleCreate = () => {
     handleCloseForm()
   }
 
@@ -36,8 +36,8 @@ export const DepartmentsTableRow = ({
     }
   )
 
-  const handleDelete = async () => {
-    await deleteDepartment({
+  const handleDelete = () => {
+    deleteDepartment({
       variables: { id: tableRowItem.id },
     })
   }

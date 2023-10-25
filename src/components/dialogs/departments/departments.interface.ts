@@ -1,9 +1,9 @@
-export interface Props {
+export interface DepartmentsProps {
   close: () => void
   confirm: () => void
   opened: boolean
 }
 
-export interface FormInput {
+export interface DepartmentsFormInput {
   name: string
 }

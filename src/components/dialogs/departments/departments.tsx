@@ -7,11 +7,18 @@ import {
   getDepartmentsQuery,
 } from '@graphql/departments/departments.queries'
 import FormFields from '@molecules/form-fields/form-fields.molecule'
-import { FormInput, Props } from '@dialogs/departments/departments.interface'
+import {
+  DepartmentsFormInput,
+  DepartmentsProps,
+} from '@dialogs/departments/departments.interface'
 import { StyledBox, StyledDialogTitle } from './departments-dialog.styles'
 
-const CreateDepartmentsForm: React.FC<Props> = ({ close, confirm, opened }) => {
-  const { control, handleSubmit, reset } = useForm<FormInput>()
+const CreateDepartmentsForm: React.FC<DepartmentsProps> = ({
+  close,
+  confirm,
+  opened,
+}) => {
+  const { control, handleSubmit, reset } = useForm<DepartmentsFormInput>()
 
   const [CreateDepartments, { loading }] = useMutation(
     getCreateDepartmentsMutation,
@@ -20,7 +27,7 @@ const CreateDepartmentsForm: React.FC<Props> = ({ close, confirm, opened }) => {
     }
   )
 
-  const onSubmit = async (inputs: FormInput) => {
+  const onSubmit = async (inputs: DepartmentsFormInput) => {
     await CreateDepartments({
       variables: {
         skill: {
