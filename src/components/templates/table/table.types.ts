@@ -6,7 +6,7 @@ export type Item = {
 }
 
 export type TableRowProps<T> = {
-  item: T
+  tableRowItem: T
 }
 
 export type TableProps<T> = {

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { TableCell, TableRow } from '@mui/material'
-import { ILanguage } from '../../../interfaces/language.interface'
-import { createSortLabel } from '../../atoms/sort-label'
+import { ILanguage } from '@interfaces/language.interface'
+import { createSortLabel } from '@atoms/sort-label'
 
 export const LanguagesTableHead = () => {
   const { t } = useTranslation()

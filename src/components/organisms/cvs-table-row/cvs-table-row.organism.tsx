@@ -5,13 +5,13 @@ import { TableRowProps } from '../../templates/table/table.types'
 import { ActionsMenu } from '../../atoms/actions-menu'
 import { ICV } from '../../../interfaces/cv.interface'
 
-export const CVsTableRow = ({ item }: TableRowProps<ICV>) => {
+export const CVsTableRow = ({ tableRowItem }: TableRowProps<ICV>) => {
   const { t } = useTranslation()
 
   return (
     <TableRow>
       <TableCell>
-        <Checkbox checked={item.is_template} readOnly />
+        <Checkbox checked={tableRowItem.is_template} readOnly />
       </TableCell>
       <TableCell
         sx={{
@@ -21,14 +21,13 @@ export const CVsTableRow = ({ item }: TableRowProps<ICV>) => {
           overflow: 'hidden',
         }}
       >
-        {item.name}
+        {tableRowItem.name}
       </TableCell>
-      <TableCell>{item.description}</TableCell>
-      <TableCell>{item.user?.email}</TableCell>
+      <TableCell>{tableRowItem.description}</TableCell>
+      <TableCell>{tableRowItem.user?.email}</TableCell>
       <TableCell>
         <ActionsMenu>
           <MenuItem disabled>{t('CV')}</MenuItem>
-          <MenuItem disabled>{t('Delete CV')}</MenuItem>
         </ActionsMenu>
       </TableCell>
     </TableRow>
