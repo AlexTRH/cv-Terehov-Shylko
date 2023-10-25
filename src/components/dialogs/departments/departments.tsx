@@ -1,20 +1,14 @@
 import { useMutation } from '@apollo/client'
-import CloseIcon from '@mui/icons-material/Close'
 import { Button, Dialog, DialogContent, IconButton } from '@mui/material'
 import { useForm } from 'react-hook-form'
+import CloseIcon from '@mui/icons-material/Close'
 import {
   getCreateDepartmentsMutation,
   getDepartmentsQuery,
-} from '../../../graphql/departments/departments.queries'
+} from '@graphql/departments/departments.queries'
+import FormFields from '@molecules/form-fields/form-fields.molecule'
+import { FormInput, Props } from '@dialogs/departments/departments.interface'
 import { StyledBox, StyledDialogTitle } from './departments-dialog.styles'
-import { FormInput } from './departments-dialog.types'
-import FormFields from '../../molecules/form-fields/form-fields.molecule'
-
-interface Props {
-  opened: boolean
-  close: () => void
-  confirm: () => void
-}
 
 const CreateDepartmentsForm: React.FC<Props> = ({ close, confirm, opened }) => {
   const { control, handleSubmit, reset } = useForm<FormInput>()
@@ -33,9 +27,10 @@ const CreateDepartmentsForm: React.FC<Props> = ({ close, confirm, opened }) => {
           name: inputs.name,
         },
       },
+      onCompleted: () => {
+        reset()
+      },
     })
-
-    reset()
   }
 
   return (

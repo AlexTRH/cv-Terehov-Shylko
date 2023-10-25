@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Button } from '@mui/material'
-import { SearchInput } from '../../molecules/search-input'
-import CreateDepartmentsForm from '../../dialogs/departments/departments-update-form'
-import { useUser } from '../../../hooks/use-user.hook'
+import CreateDepartmentsForm from '@dialogs/departments/departments-update-form'
+import { useUser } from '@hooks/use-user.hook'
+import { SearchInput } from '@molecules/search-input'
 
 export const DepartmentsTableTool = () => {
-  const [formOpened, setFormOpened] = useState(false)
+  const [formOpened, setFormOpened] = useState<boolean>(false)
   const { isAdmin } = useUser()
 
   const CreateClick = () => {
@@ -19,14 +19,19 @@ export const DepartmentsTableTool = () => {
   const create = async () => {
     closeForm()
   }
+
+  const departmentsForm = (
+    <CreateDepartmentsForm
+      opened={formOpened}
+      close={closeForm}
+      confirm={create}
+    />
+  )
+
   return (
     <>
-      <CreateDepartmentsForm
-        opened={formOpened}
-        close={closeForm}
-        confirm={create}
-      />
-      <SearchInput />
+      {departmentsForm}
+      <SearchInput key="search-input" />
       <Button
         disabled={!isAdmin}
         color="secondary"

@@ -1,11 +1,12 @@
 import { useQuery } from '@apollo/client'
-import { PageLoader } from '../../components/atoms/page-loader/page-loader.atom'
-import { createTable } from '../../components/templates/table'
-import { DepartmentsTableTool } from '../../components/organisms/departments-table-tool/departments-table-tool.organism'
-import { DepartmentsTableHead } from '../../components/organisms/departments-table-head/departments-table-head.organism'
-import { DepartmentsTableRow } from '../../components/organisms/departments-table-row/departments-table-row.organism'
-import { getDepartmentsQuery } from '../../graphql/departments/departments.queries'
-import { IDepartment } from '../../interfaces/department.interface'
+import { PageLoader } from '@atoms/page-loader'
+import { createTable } from '@templates/table'
+import { DepartmentsTableTool } from '@organisms/departments-table-tool'
+import { DepartmentsTableHead } from '@organisms/departments-table-head'
+import { DepartmentsTableRow } from '@organisms/departments-table-row'
+import { getDepartmentsQuery } from '@graphql/departments/departments.queries'
+import { IDepartment } from '@interfaces/department.interface'
+import Preloader from '@atoms/preloader/preloader.atom'
 
 const Table = createTable<IDepartment>()
 
@@ -18,21 +19,17 @@ const DepartmentsPage = () => {
     useQuery<DepartmentsResult>(getDepartmentsQuery)
 
   return (
-    <>
-      {loading ? (
-        <PageLoader />
-      ) : (
-        <Table
-          items={data?.departments || []}
-          TableToolComponent={DepartmentsTableTool}
-          TableHeadComponent={DepartmentsTableHead}
-          TableRowComponent={DepartmentsTableRow}
-          searchBy={['name']}
-          defaultSortBy="name"
-          loading={loading}
-        />
-      )}
-    </>
+    <Preloader loading={loading} error={error}>
+      <Table
+        items={data?.departments || []}
+        TableToolComponent={DepartmentsTableTool}
+        TableHeadComponent={DepartmentsTableHead}
+        TableRowComponent={DepartmentsTableRow}
+        searchBy={['name']}
+        defaultSortBy="name"
+        loading={loading}
+      />
+    </Preloader>
   )
 }
 

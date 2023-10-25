@@ -15,8 +15,8 @@ import { EmployeeProfile } from '@pages/employee-profile'
 import { EmployeeDetails } from '@pages/employee-details'
 import { EmployeeCvs } from '@pages/employee-cvs'
 import { ProfilePage } from '@pages/employee-profile/employee-profile.styles'
-import { DepartmentsPage } from '@/pages/departments'
-import { CVsPage } from '@/pages/cvs'
+import { DepartmentsPage } from '@pages/departments'
+import { CVsPage } from '@pages/cvs'
 
 const AppRouter = () => {
   const isAuth = useReactiveVar(authService.access_token$)

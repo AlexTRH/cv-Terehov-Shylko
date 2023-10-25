@@ -1,21 +1,20 @@
 import { useMutation } from '@apollo/client'
 import CloseIcon from '@mui/icons-material/Close'
-import { Button, Dialog, DialogContent, IconButton } from '@mui/material'
 import { useForm } from 'react-hook-form'
+import { Button, Dialog, DialogContent, IconButton } from '@mui/material'
+import { useCallback } from 'react'
 import {
-  getUpdateDepartmentsMutation,
   getDepartmentsQuery,
-} from '../../../graphql/departments/departments.queries'
-import { StyledBox, StyledDialogTitle } from './departments-dialog.styles'
+  getUpdateDepartmentsMutation,
+} from '@graphql/departments/departments.queries'
+import FormFields from '@molecules/form-fields/form-fields.molecule'
+import { Props } from '@dialogs/departments/departments-update-form.interface'
 import { FormInput } from './departments-dialog.types'
-import FormFields from '../../molecules/form-fields/form-fields.molecule'
+import { StyledBox, StyledDialogTitle } from './departments-dialog.styles'
 
-interface Props {
-  opened: boolean
-  close: () => void
-  confirm: () => void
-  id: string
-}
+const [UpdateDepartments] = useMutation(getUpdateDepartmentsMutation, {
+  refetchQueries: [{ query: getDepartmentsQuery }],
+})
 
 const UpdateDepartmentsForm: React.FC<Props> = ({
   close,
@@ -25,22 +24,21 @@ const UpdateDepartmentsForm: React.FC<Props> = ({
 }) => {
   const { control, handleSubmit, reset } = useForm<FormInput>()
 
-  const [UpdateDepartments] = useMutation(getUpdateDepartmentsMutation, {
-    refetchQueries: [{ query: getDepartmentsQuery }],
-  })
-
-  const onSubmit = async (inputs: FormInput) => {
-    await UpdateDepartments({
-      variables: {
-        id,
-        skill: {
-          name: inputs.name,
+  const onSubmit = useCallback(
+    async (inputs: FormInput) => {
+      await UpdateDepartments({
+        variables: {
+          id,
+          skill: {
+            name: inputs.name,
+          },
         },
-      },
-    })
+      })
 
-    reset()
-  }
+      reset()
+    },
+    [UpdateDepartments, id, reset]
+  )
 
   return (
     <Dialog open={opened} onClose={close}>
